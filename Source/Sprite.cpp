@@ -1,7 +1,8 @@
 #include "Headers/Sprite.hpp"
 
-Sprite::Sprite(sf::Vector2f position, sf::Vector2i size)
+Sprite::Sprite(sf::Vector2f position, sf::Vector2i size, const std::string textureFile)
     : size_(size)
+    , textureFile_(textureFile)
 {
     sprite_.setOrigin(size_.x/2, size.y/2);
     sprite_.setPosition(position);
@@ -10,12 +11,9 @@ Sprite::Sprite(sf::Vector2f position, sf::Vector2i size)
 void Sprite::draw(sf::RenderWindow& i_window)
 {
     sf::Texture texture;
-    texture.loadFromFile("../Source/Images/Human.png");
-    texture.setSmooth(true);
+    texture.loadFromFile(textureFile_);
 
     sprite_.setTexture(texture);
-
-    std::cout << sprite_.getPosition().x << ", " << sprite_.getPosition().y << '\n';
 
     i_window.draw(sprite_);
 }

@@ -10,7 +10,7 @@ int main()
 {
     sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "ForgottenIsland");
     
-    Sprite sprite(sf::Vector2f{300, 150}, sf::Vector2i{60, 100});
+    Sprite sprite(sf::Vector2f{300, 150}, sf::Vector2i{60, 100}, "../Source/Images/Human.png");
 
     while(window.isOpen())
     {
@@ -20,8 +20,6 @@ int main()
             if(event.type == sf::Event::Closed)
                 window.close();
         }
-
-        sprite.setPosition({900.f, 450.f});
 
         window.clear();
         sprite.draw(window);

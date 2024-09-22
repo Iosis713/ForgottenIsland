@@ -10,14 +10,14 @@
 class Sprite
 {
 protected:
-    //sf::Vector2f position_;
     sf::Vector2i size_;
     sf::Sprite sprite_;
+    const std::string textureFile_;
     
 public: 
     
     Sprite() = default;
-    Sprite(sf::Vector2f position, sf::Vector2i size); 
+    Sprite(sf::Vector2f position, sf::Vector2i size, const std::string textureFile); 
     virtual ~Sprite() = default;
     
     void draw(sf::RenderWindow& i_window);
