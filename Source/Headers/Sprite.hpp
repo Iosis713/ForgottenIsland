@@ -20,7 +20,7 @@ public:
     Sprite(sf::Vector2f position, sf::Vector2i size, const std::string textureFile); 
     virtual ~Sprite() = default;
     
-    void draw(sf::RenderWindow& i_window);
+    virtual void draw(sf::RenderWindow& i_window);
 
     //GETTERS
     const auto getPosition() const;

@@ -10,7 +10,8 @@ set(SFML_LIB sfml-graphics
              sfml-window
              sfml-system)
 
-set(SRC     Source/Sprite.cpp)
+set(SRC     Source/Sprite.cpp
+            Source/Moveable.cpp)
 
 add_library(${PROJECT_NAME}-lib STATIC ${SRC})
 
