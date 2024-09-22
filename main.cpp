@@ -3,17 +3,14 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
-int SCREEN_WIDTH = 1920;
-int SCREEN_HEIGHT = 1200;
+#include "Source/Headers/Global.hpp"
+#include "Source/Headers/Sprite.hpp"
 
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "ForgottenIsland");
-
-    sf::RectangleShape rectangle;
-    rectangle.setSize(sf::Vector2f(100, 50));
-    rectangle.setFillColor(sf::Color::Blue);
-    rectangle.setPosition(300, 200);
+    
+    Sprite sprite(sf::Vector2f{300, 150}, sf::Vector2i{60, 100});
 
     while(window.isOpen())
     {
@@ -24,8 +21,10 @@ int main()
                 window.close();
         }
 
+        sprite.setPosition({900.f, 450.f});
+
         window.clear();
-        window.draw(rectangle);
+        sprite.draw(window);
         window.display();
     }
 
