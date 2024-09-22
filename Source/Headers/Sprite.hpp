@@ -24,6 +24,8 @@ public:
 
     //GETTERS
     const auto getPosition() const;
+    const auto getSize() const;
+    const sf::Sprite& getSprite() const;
 
     //SETTERS
     void setPosition(sf::Vector2f position);

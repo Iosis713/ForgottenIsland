@@ -7,15 +7,18 @@
 
 #include "Source/Headers/Global.hpp"
 #include "Source/Headers/Sprite.hpp"
+#include "Source/Headers/Collider.hpp"
 #include "Source/Headers/Moveable.hpp"
+
+using spritePtr = std::shared_ptr<Sprite>;
 
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "ForgottenIsland");
     
-    Sprite sprite(sf::Vector2f{300, 150}, sf::Vector2i{60, 100}, "../Source/Images/Human.png");
+    spritePtr sprite = std::make_shared<Sprite>(sf::Vector2f{300, 150}, sf::Vector2i{60, 100}, "../Source/Images/Human.png");
 
-    Moveable moveable(sf::Vector2f{300, 150}, sf::Vector2i{60, 100}, "../Source/Images/Human.png");
+    std::shared_ptr<Moveable> moveable =  std::make_shared<Moveable>(sf::Vector2f{300, 150}, sf::Vector2i{60, 100}, "../Source/Images/Human.png");
 
 
     while(window.isOpen())
@@ -27,11 +30,14 @@ int main()
                 window.close();
         }
 
-        moveable.move({3.f, 3.f});
+        moveable->move({3.f, 3.f});
+
+        //FIRST CHECKOUT
+        std::cout << Collider::isColliding(sprite, moveable) << '\n';
 
         window.clear();
-        sprite.draw(window);
-        moveable.draw(window);
+        sprite->draw(window);
+        moveable->draw(window);
         window.display();
 
         {

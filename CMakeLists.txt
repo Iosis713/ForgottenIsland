@@ -11,6 +11,7 @@ set(SFML_LIB sfml-graphics
              sfml-system)
 
 set(SRC     Source/Sprite.cpp
+            Source/Collider.cpp
             Source/Moveable.cpp)
 
 add_library(${PROJECT_NAME}-lib STATIC ${SRC})

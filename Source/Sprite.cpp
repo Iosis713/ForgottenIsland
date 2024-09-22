@@ -25,6 +25,15 @@ const auto Sprite::getPosition() const
     return sprite_.getPosition();
 }
 
+const auto Sprite::getSize() const
+{
+    return this->size_;
+}
+
+const sf::Sprite& Sprite::getSprite() const
+{
+    return this->sprite_;
+}
 
 /*************************SETTERS******************************/
 
