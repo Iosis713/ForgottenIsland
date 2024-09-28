@@ -12,7 +12,8 @@ set(SFML_LIB sfml-graphics
 
 set(SRC     Source/Sprite.cpp
             Source/Collider.cpp
-            Source/Moveable.cpp)
+            Source/Moveable.cpp
+            Source/Harvestable.cpp)
 
 add_library(${PROJECT_NAME}-lib STATIC ${SRC})
 
