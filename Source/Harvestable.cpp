@@ -2,7 +2,9 @@
 
 Harvestable::Harvestable(sf::Vector2f position, sf::Vector2i size, const std::string textureFile)
     : Sprite(position, size, textureFile)
-{}
+{
+    timeFromLatestHarvest = std::chrono::steady_clock::now();
+}
 
 void Harvestable::draw(sf::RenderWindow& i_window)
 {
@@ -16,11 +18,19 @@ void Harvestable::draw(sf::RenderWindow& i_window)
 
 void Harvestable::setIsGrown(bool isGrown)
 {
+    if(isGrown == false)
+        timeFromLatestHarvest = std::chrono::steady_clock::now();
+
     isGrown_ = isGrown;
 }
 
-/*void Harvestable::organize()
+void Harvestable::organize()
 {
-    
-}*/
+    deltaTime = std::chrono::duration_cast<std::chrono::milliseconds>
+                (std::chrono::steady_clock::now() - timeFromLatestHarvest).count();
+
+    if(!isGrown_ and deltaTime > growthTime_)
+        isGrown_ = true;
+
+}
 

@@ -12,18 +12,18 @@ using Time = std::chrono::time_point<std::chrono::steady_clock>;
 class Harvestable : public Sprite
 {
 protected:
-    unsigned growthTime_ = 2000; //ms
+    const unsigned growthTime_ = 2000; //ms
+    unsigned deltaTime = 0;
     Time timeFromLatestHarvest;
 
 public:
+    bool isGrown_ = true;
 
     Harvestable(sf::Vector2f position, sf::Vector2i size, const std::string textureFile);
     virtual ~Harvestable() = default;
 
     void draw(sf::RenderWindow& i_window) override;
-    //virtual void organize();
-
-    bool isGrown_ = true;
+    void organize();
 
     void setIsGrown(bool isGrown);
 

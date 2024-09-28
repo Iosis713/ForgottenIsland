@@ -9,6 +9,7 @@
 #include "Source/Headers/Sprite.hpp"
 #include "Source/Headers/Collider.hpp"
 #include "Source/Headers/Moveable.hpp"
+#include "Source/Headers/Controllable.hpp"
 #include "Source/Headers/Harvestable.hpp"
 
 using spritePtr = std::shared_ptr<Sprite>;
@@ -19,9 +20,14 @@ int main()
     
     spritePtr sprite = std::make_shared<Sprite>(sf::Vector2f{300, 150}, sf::Vector2i{60, 100}, "../Source/Images/Human.png");
 
-    std::shared_ptr<Moveable> moveable = std::make_shared<Moveable>(sf::Vector2f{300, 150}, sf::Vector2i{60, 100}, "../Source/Images/Human.png");
+    std::shared_ptr<Controllable> player = std::make_shared<Controllable>(sf::Vector2f{300, 150}
+                                                                        , sf::Vector2i{60, 100}
+                                                                        , "../Source/Images/Human.png"
+                                                                        , 5.f);
 
-    std::shared_ptr<Harvestable> harvestable = std::make_shared<Harvestable>(sf::Vector2f{700, 700}, sf::Vector2i {200, 250}, "../Source/Images/Tree.png");
+    std::shared_ptr<Harvestable> harvestable = std::make_shared<Harvestable>(sf::Vector2f{700, 700}
+                                                                            , sf::Vector2i {200, 250}
+                                                                            , "../Source/Images/Tree.png");
 
     while(window.isOpen())
     {
@@ -32,7 +38,7 @@ int main()
                 window.close();
         }
 
-        moveable->move({3.f, 3.f});
+        player->control();
 
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::T))
             harvestable->setIsGrown(true);
@@ -40,10 +46,12 @@ int main()
         else if(sf::Keyboard::isKeyPressed(sf::Keyboard::F))
             harvestable->setIsGrown(false);
 
+        harvestable->organize();
+
         window.clear();
         sprite->draw(window);
-        moveable->draw(window);
         harvestable->draw(window);
+        player->draw(window);
         window.display();
 
         {
