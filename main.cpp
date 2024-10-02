@@ -11,6 +11,7 @@
 #include "Source/Headers/Moveable.hpp"
 #include "Source/Headers/Controllable.hpp"
 #include "Source/Headers/Harvestable.hpp"
+#include "Source/Headers/Adventurer.hpp"
 
 using spritePtr = std::shared_ptr<Sprite>;
 
@@ -20,7 +21,7 @@ int main()
     
     spritePtr sprite = std::make_shared<Sprite>(sf::Vector2f{300, 150}, sf::Vector2i{60, 100}, "../Source/Images/Human.png");
 
-    std::shared_ptr<Controllable> player = std::make_shared<Controllable>(sf::Vector2f{300, 150}
+    std::shared_ptr<Adventurer> player = std::make_shared<Adventurer>(sf::Vector2f{300, 150}
                                                                         , sf::Vector2i{60, 100}
                                                                         , "../Source/Images/Human.png"
                                                                         , 5.f);
@@ -39,6 +40,9 @@ int main()
         }
 
         player->control();
+
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+            std::cout << player->harvest(harvestable) << '\n';
 
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::T))
             harvestable->setIsGrown(true);

@@ -15,10 +15,9 @@ protected:
     const unsigned growthTime_ = 2000; //ms
     unsigned deltaTime = 0;
     Time timeFromLatestHarvest;
-
-public:
     bool isGrown_ = true;
 
+public:
     Harvestable(sf::Vector2f position, sf::Vector2i size, const std::string textureFile);
     virtual ~Harvestable() = default;
 
@@ -26,6 +25,7 @@ public:
     void organize();
 
     void setIsGrown(bool isGrown);
+    inline bool isGrown() {return this->isGrown_;}
 
 };
 

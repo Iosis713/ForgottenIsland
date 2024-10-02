@@ -14,7 +14,9 @@ set(SRC     Source/Sprite.cpp
             Source/Collider.cpp
             Source/Moveable.cpp
             Source/Controllable.cpp
-            Source/Harvestable.cpp)
+            Source/Harvestable.cpp
+            Source/Adventurer.cpp
+            Source/Utils.cpp)
 
 add_library(${PROJECT_NAME}-lib STATIC ${SRC})
 
