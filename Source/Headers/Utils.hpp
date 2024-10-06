@@ -10,8 +10,6 @@ struct Utils
     virtual ~Utils() = default;
 
     int randomGenerator(const int min, const int max);
-
-
 };
 
 #endif

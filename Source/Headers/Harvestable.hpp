@@ -6,6 +6,7 @@
 #include <thread>
 
 #include "Sprite.hpp"
+#include "Resource.hpp"
 
 using Time = std::chrono::time_point<std::chrono::steady_clock>;
 
@@ -16,7 +17,8 @@ protected:
     unsigned deltaTime = 0;
     Time timeFromLatestHarvest;
     bool isGrown_ = true;
-
+    ResourceName resourceType = ResourceName::UNKNOWN;
+    
 public:
     Harvestable(sf::Vector2f position, sf::Vector2i size, const std::string textureFile);
     virtual ~Harvestable() = default;
@@ -26,7 +28,6 @@ public:
 
     void setIsGrown(bool isGrown);
     inline bool isGrown() {return this->isGrown_;}
-
 };
 
 #endif
