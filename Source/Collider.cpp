@@ -1,12 +1,11 @@
 #include "Headers/Collider.hpp"
 
-bool Collider::isColliding(spritePtr source, spritePtr target)
+/*template <typename Source, typename Target>
+bool Collider::isColliding(Source source, Target target)
 {
-   if(source->getSprite().getGlobalBounds().intersects(
-      target->getSprite().getGlobalBounds()))
-   {
-        return true;
-   }
-   return false;
-
-}
+   if(source->getSprite().getGlobalBounds().intersects(target->getSprite().getGlobalBounds()))
+      return true;
+   
+   else
+      return false;
+}*/

@@ -16,7 +16,16 @@ struct Collider
     Collider() = default;
     ~Collider() = default;
 
-    static bool isColliding(spritePtr source, spritePtr target);
+    template <typename Source, typename Target>
+    static inline bool isColliding(Source source, Target target)
+    {
+        if(source->getSprite().getGlobalBounds().intersects(target->getSprite().getGlobalBounds()))
+            return true;
+   
+        else
+            return false;
+    }   
+
 
 };
 

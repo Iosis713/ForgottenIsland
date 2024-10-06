@@ -11,6 +11,7 @@
 #include "Source/Headers/Moveable.hpp"
 #include "Source/Headers/Controllable.hpp"
 #include "Source/Headers/Harvestable.hpp"
+#include "Source/Headers/HarvestableManager.hpp"
 #include "Source/Headers/Adventurer.hpp"
 
 using spritePtr = std::shared_ptr<Sprite>;
@@ -26,35 +27,36 @@ int main()
                                                                         , "../Source/Images/Human.png"
                                                                         , 5.f);
 
-    std::shared_ptr<Harvestable> harvestable = std::make_shared<Harvestable>(sf::Vector2f{700, 700}
-                                                                            , sf::Vector2i {200, 250}
-                                                                            , "../Source/Images/Tree.png");
+    std::shared_ptr<HarvestableManager> harvestManager = std::make_shared<HarvestableManager>();
+    harvestManager->addNew<Harvestable>(sf::Vector2f{700, 700}
+                                        , sf::Vector2i {200, 250}
+                                        , "../Source/Images/Tree.png");
 
-    while(window.isOpen())
+    harvestManager->addNew<Harvestable>(sf::Vector2f{1000, 400}
+                                        , sf::Vector2i {200, 250}
+                                        , "../Source/Images/Tree.png");
+
+    while (window.isOpen())
     {
         sf::Event event;
-        while(window.pollEvent(event))
+        while (window.pollEvent(event))
         {
             if(event.type == sf::Event::Closed)
                 window.close();
         }
 
         player->control();
+        for (auto& harvestable : harvestManager->manager_)
+        {
+            if(Collider::isColliding(player, harvestable))
+                player->harvest(harvestable);
+        }
 
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
-            std::cout << player->harvest(harvestable) << '\n';
-
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::T))
-            harvestable->setIsGrown(true);
-
-        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::F))
-            harvestable->setIsGrown(false);
-
-        harvestable->organize();
+        harvestManager->organizeAll();
 
         window.clear();
         sprite->draw(window);
-        harvestable->draw(window);
+        harvestManager->drawAll(window);
         player->draw(window);
         window.display();
 

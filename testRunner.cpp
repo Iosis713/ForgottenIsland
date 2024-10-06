@@ -5,7 +5,9 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
+#include "Source/Headers/Global.hpp"
 #include "Source/Headers/Sprite.hpp"
+#include "Source/Headers/Collider.hpp"
 
 class SourceSpriteFixture : public testing::TestWithParam<std::tuple<sf::Vector2f, bool>>
 {
@@ -19,19 +21,26 @@ TEST_P(SourceSpriteFixture, CollisionTest)
     sf::Vector2f targetPosition = std::get<0>(tuple);
     std::shared_ptr<Sprite> targetSprite = std::make_shared<Sprite>(targetPosition, sf::Vector2i{50, 50}, "../Source/Images/Human.png");
 
-}
+    sf::RenderWindow window (sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "TEST");
+    sourceSprite->draw(window);
+    targetSprite->draw(window);
+
+    ASSERT_EQ(Collider::isColliding(sourceSprite, targetSprite), std::get<1>(tuple));
+};
 
 INSTANTIATE_TEST_CASE_P(CollisionT, SourceSpriteFixture, testing::Values
     (
         std::make_tuple(sf::Vector2f(450.f, 450.f), true),//VERTICES
         std::make_tuple(sf::Vector2f(550.f, 450.f), true),
         std::make_tuple(sf::Vector2f(450.f, 550.f), true),
-        std::make_tuple(sf::Vector2f(550.f, 450.f), false),
+        std::make_tuple(sf::Vector2f(550.f, 450.f), true),
         std::make_tuple(sf::Vector2f(470.f, 450.f), true),//EDGES
         std::make_tuple(sf::Vector2f(450.f, 470.f), true),
-        std::make_tuple(sf::Vector2f(470.f, 550.f), false),
-        std::make_tuple(sf::Vector2f(550.f, 470.f), false),
-        std::make_tuple(sf::Vector2f(470.f, 480.f), true)));
+        std::make_tuple(sf::Vector2f(470.f, 550.f), true),
+        std::make_tuple(sf::Vector2f(550.f, 470.f), true),
+        std::make_tuple(sf::Vector2f(470.f, 480.f), true),
+        std::make_tuple(sf::Vector2f(440.f, 440.f), false) /*Out of range*/
+    ));
 
 
 int main(int argc, char** argv)

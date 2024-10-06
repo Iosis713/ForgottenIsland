@@ -14,7 +14,7 @@ public:
                 , const std::string textureFile
                 , float speed);
 
-    void control();
+    virtual void control();
 };
 
 #endif

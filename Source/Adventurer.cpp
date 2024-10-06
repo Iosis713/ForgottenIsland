@@ -9,13 +9,16 @@ Adventurer::Adventurer(sf::Vector2f position
 
 int Adventurer::harvest(std::shared_ptr<Harvestable> harvestable)
 {
-    //need to be updated with respect to mouse click on entity
-    if(harvestable->isGrown())
+    if (harvestable->isGrown() and sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
     {
         harvestable->setIsGrown(false);
-        int drop = Utils().randomGenerator(1, 7);
-        return drop;
+        return Utils().randomGenerator(1, 7);
     }
 
     return 0;
+}
+
+void Adventurer::control()
+{
+    Controllable::control();
 }

@@ -9,6 +9,7 @@ Controllable::Controllable(sf::Vector2f position
 
 void Controllable::control()
 {
+    
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
         move({speed_, 0.f});
 

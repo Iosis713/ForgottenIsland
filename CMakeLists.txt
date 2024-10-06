@@ -15,6 +15,7 @@ set(SRC     Source/Sprite.cpp
             Source/Moveable.cpp
             Source/Controllable.cpp
             Source/Harvestable.cpp
+            Source/HarvestableManager.cpp
             Source/Adventurer.cpp
             Source/Utils.cpp)
 

@@ -4,7 +4,6 @@ Sprite::Sprite(sf::Vector2f position, sf::Vector2i size, const std::string textu
     : size_(size)
     , textureFile_(textureFile)
 {
-    sprite_.setOrigin(size_.x/2, size.y/2);
     sprite_.setPosition(position);
 }
 
@@ -20,12 +19,12 @@ void Sprite::draw(sf::RenderWindow& i_window)
 
 /*************************GETTERS******************************/
 
-const auto Sprite::getPosition() const
+const sf::Vector2f Sprite::getPosition() const
 {
     return sprite_.getPosition();
 }
 
-const auto Sprite::getSize() const
+const sf::Vector2i Sprite::getSize() const
 {
     return this->size_;
 }

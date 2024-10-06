@@ -4,8 +4,10 @@
 
 #include <memory>
 
+#include "Collider.hpp"
 #include "Controllable.hpp"
 #include "Harvestable.hpp"
+#include "HarvestableManager.hpp"
 #include "Utils.hpp"
 
 class Adventurer : public Controllable
@@ -20,6 +22,8 @@ public:
     virtual ~Adventurer() = default;
 
     int harvest(std::shared_ptr<Harvestable> harvestable);
+
+    void control() override;
 
 };
 #endif

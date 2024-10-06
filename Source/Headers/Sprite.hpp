@@ -23,8 +23,8 @@ public:
     virtual void draw(sf::RenderWindow& i_window);
 
     //GETTERS
-    const auto getPosition() const;
-    const auto getSize() const;
+    const sf::Vector2f getPosition() const;
+    const sf::Vector2i getSize() const;
     const sf::Sprite& getSprite() const;
 
     //SETTERS
