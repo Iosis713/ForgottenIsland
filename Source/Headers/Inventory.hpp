@@ -20,12 +20,15 @@ public:
     Inventory();
     ~Inventory() = default;
 
+    
+    //________________________TEMPLATES_______________________________//
+    
     template <typename Resource_t>
     void add(std::shared_ptr<Resource_t> resourcePtr)
     {
     auto existingItem = std::find_if(items_.begin(), items_.end(), [resourcePtr](auto& item)
             {
-                return item->name_ == resourcePtr->name_;
+                return item->nameCode_ == resourcePtr->nameCode_;
             }
         );
 

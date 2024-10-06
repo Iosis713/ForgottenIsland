@@ -1,7 +1,8 @@
 #include "Headers/Resource.hpp"
 
-Resource::Resource(ResourceName name, const unsigned value, unsigned amount)
-    : name_(name)
+Resource::Resource(const ResourceName nameCode, const std::string name, const unsigned value, unsigned amount)
+    : nameCode_(nameCode)
+    , name_(name)
     , value_(value)
     , amount_(amount)
 {}
