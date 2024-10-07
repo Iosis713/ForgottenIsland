@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/ForgottenIsland.dir/main.cpp.o -o ForgottenIsland  -lsfml-graphics -lsfml-window -lsfml-system libForgottenIsland-lib.a 

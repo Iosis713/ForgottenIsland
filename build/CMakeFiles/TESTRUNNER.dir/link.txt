@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/TESTRUNNER.dir/testRunner.cpp.o -o TESTRUNNER  /usr/lib/libgtest.a libForgottenIsland-lib.a -lsfml-graphics -lsfml-window -lsfml-system -lpthread 
