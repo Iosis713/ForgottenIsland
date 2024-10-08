@@ -20,6 +20,13 @@ public:
     Inventory();
     ~Inventory() = default;
 
+    void sortByAmount();
+    void sortByName();
+    void sortByUnitValue();
+    
+    //________________________GETTERS_________________________________//
+
+    inline Items getItems() { return this->items_; };
     
     //________________________TEMPLATES_______________________________//
     
@@ -38,6 +45,8 @@ public:
     else
         items_.push_back(resourcePtr);
     }
+
+    
 
 };
 

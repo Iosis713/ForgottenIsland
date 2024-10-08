@@ -7,7 +7,10 @@
 enum class ResourceName
 {
     UNKNOWN = 0,
-    Wood = 1
+    Ash = 1,
+    Wheat = 2,
+    Rock = 3,
+    Iron = 4
 };
 
 struct Resource
