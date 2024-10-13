@@ -7,15 +7,21 @@ Adventurer::Adventurer(sf::Vector2f position
     : Controllable(position, size, textureFile, speed)
 {}
 
-int Adventurer::harvest(std::shared_ptr<Harvestable> harvestable)
+void Adventurer::harvest(std::shared_ptr<Harvestable> harvestable)
 {
     if (harvestable->isGrown() and sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
     {
         harvestable->setIsGrown(false);
-        return Utils().randomGenerator(1, 7);
+        int tempAmount = Utils().randomGenerator(1, 7);
+        harvestable->amount_ = static_cast<unsigned>(tempAmount);
+        std::cout << "Casted to unsigned value = " << static_cast<unsigned>(tempAmount) << '\n';
+        inventory_.add(harvestable);
+        
+        //MANUAL TEST
+        std::cout << "Inventory first item amount: " << inventory_.getItems()[0]->amount_ << ", ";
+        std::cout << "Size of inventory: " << inventory_.getItems().size() << '\n';
+        std::cout << '\n' << '\n';
     }
-
-    return 0;
 }
 
 void Adventurer::control()

@@ -10,14 +10,15 @@
 
 using Time = std::chrono::time_point<std::chrono::steady_clock>;
 
-class Harvestable : public Sprite
+class Harvestable   : public Sprite
+                    , public Resource
+
 {
 protected:
     const unsigned growthTime_ = 2000; //ms
     unsigned deltaTime = 0;
     Time timeFromLatestHarvest;
     bool isGrown_ = true;
-    ResourceName resourceType = ResourceName::UNKNOWN;
     
 public:
     Harvestable(sf::Vector2f position, sf::Vector2i size, const std::string textureFile);

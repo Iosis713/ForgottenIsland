@@ -30,20 +30,29 @@ public:
     
     //________________________TEMPLATES_______________________________//
     
-    template <typename Resource_t>
-    void add(std::shared_ptr<Resource_t> resourcePtr)
-    {
-    auto existingItem = std::find_if(items_.begin(), items_.end(), [resourcePtr](auto& item)
-            {
-                return item->nameCode_ == resourcePtr->nameCode_;
-            }
-        );
 
-    if (existingItem != items_.end())
-        (*existingItem)->amount_ += resourcePtr->amount_;
-    
-    else
-        items_.push_back(resourcePtr);
+    //TO CHANGE TO DO TO DO TO DO
+    //template <typename Resource_t>
+    void add(std::shared_ptr<Resource> resourcePtr)
+    {
+        auto existingItem = std::find_if(items_.begin(), items_.end(), [&resourcePtr](const auto& item)
+                {
+                    return item->nameCode_ == resourcePtr->nameCode_;
+                }
+            );
+
+        if(existingItem != items_.end())
+        {
+            std::cout << "Existing Item amount = " << (*existingItem)->amount_ << '\n';
+            (*existingItem)->amount_ += resourcePtr->amount_;
+            std::cout << "Resource Item amount = " << resourcePtr->amount_ << '\n';
+        }
+        
+        else
+        {
+            std::cout << "Last iterator!\n";
+            items_.push_back(resourcePtr);
+        }
     }
 
     

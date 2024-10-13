@@ -19,10 +19,14 @@ public:
     const ResourceName nameCode_ = ResourceName::UNKNOWN;
     const std::string name_ = "Unknown";
     const unsigned value_ = 0;
-    unsigned amount_ = 1;
+    unsigned amount_ = 0;
 
-    Resource(ResourceName nameCode, const std::string name_, unsigned value,unsigned amount);
+    Resource();
+    Resource(ResourceName nameCode, const std::string name_, unsigned value);
+    Resource(ResourceName nameCode, const std::string name_, unsigned value, unsigned amount);
     virtual ~Resource() = default;
+
+    Resource& operator +=(const unsigned amount);
 };
 
 #endif

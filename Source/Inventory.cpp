@@ -11,7 +11,6 @@ void Inventory::sortByAmount()
         {
             return previous->amount_ <= next->amount_;
         });
-
 }
 
 void Inventory::sortByName()

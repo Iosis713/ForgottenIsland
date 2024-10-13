@@ -20,21 +20,29 @@ int main()
 {
     sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "ForgottenIsland");
     
-    spritePtr sprite = std::make_shared<Sprite>(sf::Vector2f{300, 150}, sf::Vector2i{60, 100}, "../Source/Images/Human.png");
-
     std::shared_ptr<Adventurer> player = std::make_shared<Adventurer>(sf::Vector2f{300, 150}
                                                                         , sf::Vector2i{60, 100}
                                                                         , "../Source/Images/Human.png"
-                                                                        , 5.f);
+                                                                        , 8.f);
 
     std::shared_ptr<HarvestableManager> harvestManager = std::make_shared<HarvestableManager>();
-    harvestManager->addNew<Harvestable>(sf::Vector2f{700, 700}
+    
+    harvestManager->addNew<Harvestable>(sf::Vector2f{700, 600}
                                         , sf::Vector2i {200, 250}
                                         , "../Source/Images/Tree.png");
 
     harvestManager->addNew<Harvestable>(sf::Vector2f{1000, 400}
                                         , sf::Vector2i {200, 250}
                                         , "../Source/Images/Tree.png");
+
+    harvestManager->addNew<Harvestable>(sf::Vector2f{800, 250}
+                                        , sf::Vector2i {200, 250}
+                                        , "../Source/Images/Tree.png");
+
+    harvestManager->addNew<Harvestable>(sf::Vector2f{300, 300}
+                                        , sf::Vector2i {200, 250}
+                                        , "../Source/Images/Tree.png");
+                                 
 
     while (window.isOpen())
     {
@@ -55,7 +63,6 @@ int main()
         harvestManager->organizeAll();
 
         window.clear();
-        sprite->draw(window);
         harvestManager->drawAll(window);
         player->draw(window);
         window.display();

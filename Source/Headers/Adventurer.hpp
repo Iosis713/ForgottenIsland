@@ -9,10 +9,12 @@
 #include "Harvestable.hpp"
 #include "HarvestableManager.hpp"
 #include "Utils.hpp"
+#include "Inventory.hpp"
 
 class Adventurer : public Controllable
 {
 protected:
+    Inventory inventory_;
 
 public:
     Adventurer(sf::Vector2f position
@@ -21,7 +23,7 @@ public:
                 , float speed);
     virtual ~Adventurer() = default;
 
-    int harvest(std::shared_ptr<Harvestable> harvestable);
+    void harvest(std::shared_ptr<Harvestable> harvestable);
 
     void control() override;
 
