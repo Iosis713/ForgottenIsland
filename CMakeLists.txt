@@ -1,8 +1,12 @@
-cmake_minimum_required(VERSION 3.14)
+cmake_minimum_required(VERSION 3.28)
 project(ForgottenIsland)
 
-set(CXX_STANDARD_REQUIRED 20)
-set (FLAGS -Werror -Wall -Wpedantic -Wextra)
+set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_XX_FLAGS_DEBUG "-g")
+set(CMAKE_CXX_EXTENSIONS OFF)
+set(FLAGS -Werror -Wall -Wpedantic -Wextra)
+
+set(GMOCK_LIBRARIES /usr/lib/libgmock.a  /usr/lib/libgmock_main.a)
 
 find_package(GTest REQUIRED)
 
@@ -30,6 +34,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE ${SFML_LIB}
                                               ${PROJECT_NAME}-lib)
 
 target_link_libraries(TESTRUNNER PRIVATE    ${GTEST_LIBRARIES}
+                                            ${GMOCK_LIBRARIES}
                                             ${PROJECT_NAME}-lib
                                             ${SFML_LIB}
                                             pthread)
@@ -51,3 +56,4 @@ set_target_properties(TESTRUNNER        PROPERTIES
                                         CXX_STANDARD 20
                                         CXX_STANDARD_REQUIRED ON)
 
+#set(CMAKE_VERBOSE_MAKEFILE ON)

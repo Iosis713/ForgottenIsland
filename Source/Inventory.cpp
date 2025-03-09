@@ -28,3 +28,26 @@ void Inventory::sortByUnitValue()
             return previous->value_ <= next->value_;
         });
 }
+
+void Inventory::add(const std::shared_ptr<Resource> resourcePtr)
+{
+    if(!resourcePtr)
+        return;
+    auto existingItem = std::find_if(items_.begin(), items_.end(), [&resourcePtr](const auto& item)
+            {
+                return item->nameCode_ == resourcePtr->nameCode_;
+            }
+        );
+    if(existingItem != items_.end())
+    {
+        std::cout << "Existing Item amount = " << (*existingItem)->amount_ << '\n';
+        (*existingItem)->amount_ += resourcePtr->amount_;
+        std::cout << "Resource Item amount = " << resourcePtr->amount_ << '\n';
+    }
+    
+    else
+    {
+        std::cout << "Last iterator!\n";
+        items_.push_back(std::make_shared<Resource>(resourcePtr->nameCode_, resourcePtr->name_, resourcePtr->value_, resourcePtr->amount_));
+    }
+}

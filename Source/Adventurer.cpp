@@ -7,9 +7,9 @@ Adventurer::Adventurer(sf::Vector2f position
     : Controllable(position, size, textureFile, speed)
 {}
 
-void Adventurer::harvest(std::shared_ptr<Harvestable> harvestable)
+void Adventurer::harvest(std::shared_ptr<Harvestable>& harvestable)
 {
-    if (harvestable->isGrown() and sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+    if (harvestable && harvestable->isGrown() and sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
     {
         harvestable->setIsGrown(false);
         int tempAmount = Utils().randomGenerator(1, 7);

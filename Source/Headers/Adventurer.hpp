@@ -23,7 +23,7 @@ public:
                 , float speed);
     virtual ~Adventurer() = default;
 
-    void harvest(std::shared_ptr<Harvestable> harvestable);
+    void harvest(std::shared_ptr<Harvestable>& harvestable);
 
     void control() override;
 
