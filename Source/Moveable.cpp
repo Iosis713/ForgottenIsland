@@ -8,7 +8,7 @@ Moveable::Moveable(sf::Vector2f position
     , speed_(speed)
 {}
 
-void Moveable::move(sf::Vector2f distance)
+void Moveable::move(const sf::Vector2f& distance)
 {
     sprite_.move(distance);
 

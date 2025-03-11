@@ -21,7 +21,7 @@ public:
     const unsigned value_ = 0;
     unsigned amount_ = 0;
 
-    Resource();
+    Resource() = default;
     Resource(ResourceName nameCode, const std::string name_, unsigned value);
     Resource(ResourceName nameCode, const std::string name_, unsigned value, unsigned amount);
     virtual ~Resource() = default;

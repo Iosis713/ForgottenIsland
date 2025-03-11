@@ -5,7 +5,9 @@ Adventurer::Adventurer(sf::Vector2f position
                         , const std::string textureFile
                         , float speed)
     : Controllable(position, size, textureFile, speed)
-{}
+{
+    collidingSprites_.reserve(5);
+}
 
 void Adventurer::harvest(std::shared_ptr<Harvestable>& harvestable)
 {
@@ -24,7 +26,13 @@ void Adventurer::harvest(std::shared_ptr<Harvestable>& harvestable)
     }
 }
 
-void Adventurer::control()
+void Adventurer::getCollidingSprites(Sprites sprites)
 {
-    Controllable::control();
+    collidingSprites_.clear();
+    Collider collider{};
+    for (const auto& sprite : sprites)
+    {
+        if(collider.isColliding(this, sprite))
+            collidingSprites_.push_back(sprite);
+    }
 }

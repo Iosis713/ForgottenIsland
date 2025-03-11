@@ -17,16 +17,14 @@ struct Collider
     ~Collider() = default;
 
     template <typename Source, typename Target>
-    static inline bool isColliding(Source source, Target target)
+    static inline bool isColliding(const Source source, const Target target)
     {
         if(source->getSprite().getGlobalBounds().intersects(target->getSprite().getGlobalBounds()))
             return true;
-   
         else
             return false;
-    }   
-
-
+    }
+    
 };
 
 #endif

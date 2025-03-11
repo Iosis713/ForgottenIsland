@@ -28,7 +28,7 @@ public:
     const sf::Sprite& getSprite() const;
 
     //SETTERS
-    void setPosition(sf::Vector2f position);
+    void setPosition(const sf::Vector2f& position);
 
 };
 

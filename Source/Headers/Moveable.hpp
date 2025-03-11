@@ -16,7 +16,7 @@ public:
             , float speed); 
     virtual ~Moveable() = default;
 
-    void move(sf::Vector2f distnace);
+    void move(const sf::Vector2f& distnace);
 };
 
 #endif

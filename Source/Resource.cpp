@@ -1,9 +1,5 @@
 #include "Headers/Resource.hpp"
 
-Resource::Resource()
-    :Resource(ResourceName::UNKNOWN, "Unknown", 0, 0)
-{};
-
 Resource::Resource(const ResourceName nameCode, const std::string name, const unsigned value, unsigned amount)
     : nameCode_(nameCode)
     , name_(name)

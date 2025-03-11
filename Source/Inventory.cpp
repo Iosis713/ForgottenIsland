@@ -39,15 +39,7 @@ void Inventory::add(const std::shared_ptr<Resource> resourcePtr)
             }
         );
     if(existingItem != items_.end())
-    {
-        std::cout << "Existing Item amount = " << (*existingItem)->amount_ << '\n';
         (*existingItem)->amount_ += resourcePtr->amount_;
-        std::cout << "Resource Item amount = " << resourcePtr->amount_ << '\n';
-    }
-    
     else
-    {
-        std::cout << "Last iterator!\n";
         items_.push_back(std::make_shared<Resource>(resourcePtr->nameCode_, resourcePtr->name_, resourcePtr->value_, resourcePtr->amount_));
-    }
 }

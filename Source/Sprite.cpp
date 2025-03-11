@@ -36,7 +36,7 @@ const sf::Sprite& Sprite::getSprite() const
 
 /*************************SETTERS******************************/
 
-void Sprite::setPosition(sf::Vector2f position)
+void Sprite::setPosition(const sf::Vector2f& position)
 {
     sprite_.setPosition(position);
 }

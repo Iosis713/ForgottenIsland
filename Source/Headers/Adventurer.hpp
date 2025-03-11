@@ -10,11 +10,13 @@
 #include "HarvestableManager.hpp"
 #include "Utils.hpp"
 #include "Inventory.hpp"
-
+using Sprites = std::vector<std::shared_ptr<Sprite>>;
+using HarvestableManagerPtr = std::shared_ptr<HarvestableManager>;
 class Adventurer : public Controllable
 {
 protected:
     Inventory inventory_;
+    Sprites collidingSprites_;
 
 public:
     Adventurer(sf::Vector2f position
@@ -23,9 +25,7 @@ public:
                 , float speed);
     virtual ~Adventurer() = default;
 
+    void getCollidingSprites(Sprites sprites);
     void harvest(std::shared_ptr<Harvestable>& harvestable);
-
-    void control() override;
-
 };
 #endif

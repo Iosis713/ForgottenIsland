@@ -1,5 +1,6 @@
 #include <iostream>
 #include <gtest/gtest.h>
+#include <gmock/gmock.h>
 #include <tuple>
 
 #include <SFML/Graphics.hpp>
