@@ -27,5 +27,7 @@ public:
 
     void getCollidingSprites(Sprites sprites);
     void harvest(std::shared_ptr<Harvestable>& harvestable);
+    void controlHarvestable(HarvestableManagerPtr haverstableManager);
+
 };
 #endif

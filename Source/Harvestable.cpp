@@ -16,7 +16,7 @@ void Harvestable::draw(sf::RenderWindow& i_window)
     i_window.draw(sprite_);
 }
 
-void Harvestable::setIsGrown(bool isGrown)
+void Harvestable::setIsGrown(const bool isGrown)
 {
     if(isGrown == false)
         timeFromLatestHarvest = std::chrono::steady_clock::now();

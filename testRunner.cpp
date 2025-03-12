@@ -2,15 +2,19 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 #include <tuple>
+#include <memory>
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
+#include "Source/Headers/Adventurer.hpp"
 #include "Source/Headers/Global.hpp"
 #include "Source/Headers/Sprite.hpp"
 #include "Source/Headers/Collider.hpp"
 #include "Source/Headers/Resource.hpp"
 #include "Source/Headers/Inventory.hpp"
+#include "Source/Headers/Harvestable.hpp"
+#include "Source/Headers/HarvestableManager.hpp"
 
 class SourceSpriteFixture : public testing::TestWithParam<std::tuple<sf::Vector2f, bool>>
 {
@@ -81,6 +85,43 @@ TEST_F(InventoryFixture, InventorySortingByUnitValue_TEST)
 
     //THEN
     ASSERT_EQ(inventory.getItems()[0]->value_, 10);
+}
+
+/*__________________________ADVENTURER TEST__________________________*/
+
+class HarvestableMock : public Harvestable
+{
+public:
+    HarvestableMock(sf::Vector2f position, sf::Vector2i size, const std::string textureFile)
+        :Harvestable(position, size, textureFile){};
+
+    MOCK_METHOD(void, setIsGrown, (const bool isGrown), ());
+    MOCK_METHOD(bool, isGrown, (), ()); 
+};
+
+class AdventurerFixture : public testing::Test
+{
+public:
+    std::shared_ptr<Adventurer> player = std::make_shared<Adventurer>(sf::Vector2f{300, 300}
+                                                                     , sf::Vector2i{60, 100}
+                                                                     , "../Source/Images/Human.png"
+                                                                     , 8.f);
+};                       
+
+TEST_F(AdventurerFixture, harvestTesting)
+{
+
+    std::shared_ptr<Harvestable> harvestable = std::make_shared<HarvestableMock>(sf::Vector2f{300, 300}
+                                                            , sf::Vector2i {200, 250}
+                                                            , "../Source/Images/Tree.png");
+
+    
+    
+    auto harvestableMock = std::static_pointer_cast<HarvestableMock>(harvestable);
+    EXPECT_CALL(*harvestableMock, isGrown()).Times(1).WillOnce(testing::Return(true));
+    EXPECT_CALL(*harvestableMock, setIsGrown(testing::_)).Times(1);
+
+    player->harvest(harvestable);
 }
 
 int main(int argc, char** argv)

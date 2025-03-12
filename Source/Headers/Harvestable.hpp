@@ -27,7 +27,7 @@ public:
     void draw(sf::RenderWindow& i_window) override;
     void organize();
 
-    virtual void setIsGrown(bool isGrown);
+    virtual void setIsGrown(const bool isGrown);
     virtual inline bool isGrown() {return this->isGrown_;}
 };
 

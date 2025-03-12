@@ -9,20 +9,22 @@ Adventurer::Adventurer(sf::Vector2f position
     collidingSprites_.reserve(5);
 }
 
+void Adventurer::controlHarvestable(HarvestableManagerPtr harvestableManager)
+{
+    for (auto& harvestable : harvestableManager->manager_)
+        {
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && Collider::isColliding(this, harvestable))
+                harvest(harvestable);
+        }
+}
+
 void Adventurer::harvest(std::shared_ptr<Harvestable>& harvestable)
 {
-    if (harvestable && harvestable->isGrown() and sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+    if (harvestable && harvestable->isGrown())
     {
         harvestable->setIsGrown(false);
-        int tempAmount = Utils().randomGenerator(1, 7);
-        harvestable->amount_ = static_cast<unsigned>(tempAmount);
-        std::cout << "Casted to unsigned value = " << static_cast<unsigned>(tempAmount) << '\n';
+        harvestable->amount_ = static_cast<unsigned>(Utils().randomGenerator(1, 7));
         inventory_.add(harvestable);
-        
-        //MANUAL TEST
-        std::cout << "Inventory first item amount: " << inventory_.getItems()[0]->amount_ << ", ";
-        std::cout << "Size of inventory: " << inventory_.getItems().size() << '\n';
-        std::cout << '\n' << '\n';
     }
 }
 

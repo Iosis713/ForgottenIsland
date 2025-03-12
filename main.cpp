@@ -54,11 +54,13 @@ int main()
         }
 
         player->control();
+        player->controlHarvestable(harvestManager);
+        /*
         for (auto& harvestable : harvestManager->manager_)
         {
             if(Collider::isColliding(player, harvestable))
                 player->harvest(harvestable);
-        }
+        }*/
 
         harvestManager->organizeAll();
 
