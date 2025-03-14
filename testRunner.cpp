@@ -22,7 +22,7 @@ public:
     std::shared_ptr<Sprite> sourceSprite = std::make_shared<Sprite>(sf::Vector2f{500.f, 500.f}, sf::Vector2i{50, 50}, "../Source/Images/Human.png");
 };
 
-TEST_P(SourceSpriteFixture, Collision_TEST)
+TEST_P(SourceSpriteFixture, CollisionTEST)
 {
     std::tuple<sf::Vector2f, bool> tuple = GetParam();
     sf::Vector2f targetPosition = std::get<0>(tuple);
@@ -60,7 +60,7 @@ public:
 
 //____________________________SORTING TEST______________________________//
 
-TEST_F(InventoryFixture, InventorySortingByAmount_TEST)
+TEST_F(InventoryFixture, InventorySortingByAmountTEST)
 {
     //WHEN
     inventory.sortByAmount();
@@ -78,7 +78,7 @@ TEST_F(InventoryFixture, InventorySortingByName_TEST)
     ASSERT_EQ(inventory.getItems()[0]->name_, "Ash");
 }   
 
-TEST_F(InventoryFixture, InventorySortingByUnitValue_TEST)
+TEST_F(InventoryFixture, InventorySortingByUnitValueTEST)
 {
     //WHEN
     inventory.sortByUnitValue();
@@ -95,8 +95,8 @@ public:
     HarvestableMock(sf::Vector2f position, sf::Vector2i size, const std::string textureFile)
         :Harvestable(position, size, textureFile){};
 
-    MOCK_METHOD(void, setIsGrown, (const bool isGrown), ());
-    MOCK_METHOD(bool, isGrown, (), ()); 
+    MOCK_METHOD(void, setIsGrown, (const bool isGrown), (override));
+    MOCK_METHOD(bool, isGrown, (), (override)); 
 };
 
 class AdventurerFixture : public testing::Test
@@ -115,8 +115,6 @@ TEST_F(AdventurerFixture, harvestTesting)
                                                             , sf::Vector2i {200, 250}
                                                             , "../Source/Images/Tree.png");
 
-    
-    
     auto harvestableMock = std::static_pointer_cast<HarvestableMock>(harvestable);
     EXPECT_CALL(*harvestableMock, isGrown()).Times(1).WillOnce(testing::Return(true));
     EXPECT_CALL(*harvestableMock, setIsGrown(testing::_)).Times(1);
