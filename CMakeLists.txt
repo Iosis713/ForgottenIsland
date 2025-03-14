@@ -5,6 +5,7 @@ set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_XX_FLAGS_DEBUG "-g")
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(FLAGS -Werror -Wall -Wpedantic -Wextra)
+set(CMAKE_CXX_COMPILER clang++-18)
 
 set(GMOCK_LIBRARIES /usr/lib/libgmock.a  /usr/lib/libgmock_main.a)
 

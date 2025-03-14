@@ -35,7 +35,7 @@ TEST_P(SourceSpriteFixture, CollisionTEST)
     ASSERT_EQ(Collider::isColliding(sourceSprite, targetSprite), std::get<1>(tuple));
 };
 
-INSTANTIATE_TEST_CASE_P(CollisionT, SourceSpriteFixture, testing::Values
+INSTANTIATE_TEST_SUITE_P(CollisionT, SourceSpriteFixture, testing::Values
     (
         std::make_tuple(sf::Vector2f(450.f, 450.f), true),//VERTICES
         std::make_tuple(sf::Vector2f(550.f, 450.f), true),
