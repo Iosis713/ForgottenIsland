@@ -16,6 +16,8 @@
 #include "Source/Headers/Harvestable.hpp"
 #include "Source/Headers/HarvestableManager.hpp"
 
+sf::RenderWindow window (sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "TEST");
+
 class SourceSpriteFixture : public testing::TestWithParam<std::tuple<sf::Vector2f, bool>>
 {
 public:
@@ -28,7 +30,6 @@ TEST_P(SourceSpriteFixture, CollisionTEST)
     sf::Vector2f targetPosition = std::get<0>(tuple);
     std::shared_ptr<Sprite> targetSprite = std::make_shared<Sprite>(targetPosition, sf::Vector2i{50, 50}, "../Source/Images/Human.png");
 
-    sf::RenderWindow window (sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "TEST");
     sourceSprite->draw(window);
     targetSprite->draw(window);
 
