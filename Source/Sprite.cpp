@@ -4,16 +4,13 @@ Sprite::Sprite(sf::Vector2f position, sf::Vector2i size, const std::string textu
     : size_(size)
     , textureFile_(textureFile)
 {
+    texture_.loadFromFile(textureFile_);
+    sprite_.setTexture(texture_);
     sprite_.setPosition(position);
 }
 
 void Sprite::draw(sf::RenderWindow& i_window)
 {
-    sf::Texture texture;
-    texture.loadFromFile(textureFile_);
-
-    sprite_.setTexture(texture);
-
     i_window.draw(sprite_);
 }
 
@@ -29,7 +26,7 @@ const sf::Vector2i Sprite::getSize() const
     return this->size_;
 }
 
-const sf::Sprite& Sprite::getSprite() const
+sf::Sprite& Sprite::getSprite()
 {
     return this->sprite_;
 }

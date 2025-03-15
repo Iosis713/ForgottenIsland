@@ -13,10 +13,11 @@ protected:
     sf::Vector2i size_;
     sf::Sprite sprite_;
     const std::string textureFile_;
+    sf::Texture texture_;
     
 public: 
     
-    Sprite() = default;
+    Sprite() = delete;
     Sprite(sf::Vector2f position, sf::Vector2i size, const std::string textureFile); 
     virtual ~Sprite() = default;
     
@@ -25,11 +26,11 @@ public:
     //GETTERS
     const sf::Vector2f getPosition() const;
     const sf::Vector2i getSize() const;
-    const sf::Sprite& getSprite() const;
+    sf::Sprite& getSprite();
+    sf::Texture& getTexture() {return this->texture_;};
 
     //SETTERS
     void setPosition(const sf::Vector2f& position);
-
 };
 
 #endif

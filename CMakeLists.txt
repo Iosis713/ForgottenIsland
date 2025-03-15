@@ -24,7 +24,8 @@ set(SRC     Source/Sprite.cpp
             Source/Resource.cpp
             Source/Inventory.cpp
             Source/Adventurer.cpp
-            Source/Utils.cpp)
+            Source/Utils.cpp
+            Source/MapCreator.cpp)
 
 add_library(${PROJECT_NAME}-lib STATIC ${SRC})
 

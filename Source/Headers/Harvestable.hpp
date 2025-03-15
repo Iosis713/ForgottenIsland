@@ -21,6 +21,7 @@ protected:
     bool isGrown_ = true;
     
 public:
+    Harvestable() = delete;
     Harvestable(sf::Vector2f position, sf::Vector2i size, const std::string textureFile);
     virtual ~Harvestable() = default;
 

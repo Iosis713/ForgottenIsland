@@ -13,6 +13,7 @@
 #include "Source/Headers/Harvestable.hpp"
 #include "Source/Headers/HarvestableManager.hpp"
 #include "Source/Headers/Adventurer.hpp"
+#include "Source/Headers/MapCreator.hpp"
 
 using spritePtr = std::shared_ptr<Sprite>;
 
@@ -42,6 +43,8 @@ int main()
     harvestManager->addNew<Harvestable>(sf::Vector2f{300, 300}
                                         , sf::Vector2i {200, 250}
                                         , "../Source/Images/Tree.png");
+    
+    MapCreator mapCreator;
                                  
 
     while (window.isOpen())
@@ -55,16 +58,11 @@ int main()
 
         player->control();
         player->controlHarvestable(harvestManager);
-        /*
-        for (auto& harvestable : harvestManager->manager_)
-        {
-            if(Collider::isColliding(player, harvestable))
-                player->harvest(harvestable);
-        }*/
 
         harvestManager->organizeAll();
 
         window.clear();
+        mapCreator.drawMap(window);
         harvestManager->drawAll(window);
         player->draw(window);
         window.display();
