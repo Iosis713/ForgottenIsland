@@ -23,7 +23,6 @@ void MapCreator::setUpMap()
 {
     std::ranges::for_each(spritesWithParams_, [&](const auto& spriteWithparam){
         const auto& [sprite, textureParam] = spriteWithparam;
-        sprite->getSprite().setTexture(sprite->getTexture());
         sprite->getSprite().setTextureRect(sf::IntRect(std::get<0>(textureParam), {sprite->getSize().x, sprite->getSize().y}));
     });
 }
