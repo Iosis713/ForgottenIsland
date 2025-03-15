@@ -131,8 +131,9 @@ int main(int argc, char** argv)
 
 void InventoryFixture::SetUp()
 {
-    inventory.add(std::make_shared<Resource>(ResourceName::Wheat, "Wheat", 10, 160));
-    inventory.add(std::make_shared<Resource>(ResourceName::Ash, "Ash", 30, 100));
-    inventory.add(std::make_shared<Resource>(ResourceName::Iron, "Iron", 20, 80));
-    inventory.add(std::make_shared<Resource>(ResourceName::Rock, "Rock", 40, 70));
+    using enum ResourceName;
+    inventory.add(std::make_shared<Resource>(Wheat, 10, 160));
+    inventory.add(std::make_shared<Resource>(Ash, 30, 100));
+    inventory.add(std::make_shared<Resource>(Iron, 20, 80));
+    inventory.add(std::make_shared<Resource>(Rock, 40, 70));
 }

@@ -1,9 +1,9 @@
 #include "Headers/Adventurer.hpp"
 
 Adventurer::Adventurer(sf::Vector2f position
-                        , sf::Vector2i size
-                        , const std::string textureFile
-                        , float speed)
+                       , sf::Vector2i size
+                       , const std::string textureFile
+                       , float speed)
     : Controllable(position, size, textureFile, speed)
 {
     collidingSprites_.reserve(5);

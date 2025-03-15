@@ -41,5 +41,5 @@ void Inventory::add(const std::shared_ptr<Resource> resourcePtr)
     if(existingItem != items_.end())
         (*existingItem)->amount_ += resourcePtr->amount_;
     else
-        items_.push_back(std::make_shared<Resource>(resourcePtr->nameCode_, resourcePtr->name_, resourcePtr->value_, resourcePtr->amount_));
+        items_.push_back(std::make_shared<Resource>(resourcePtr->nameCode_, resourcePtr->value_, resourcePtr->amount_));
 }

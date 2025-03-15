@@ -3,14 +3,32 @@
 #define RESOURCE
 
 #include <string>
-
-enum class ResourceName
+#include <map>
+enum class ResourceName : int
 {
     UNKNOWN = 0,
     Ash = 1,
     Wheat = 2,
     Rock = 3,
     Iron = 4
+};
+
+class ResourceNameTranslator
+{
+protected:
+    std::map<ResourceName, std::string> resourceNamesMap_ {
+        {ResourceName::UNKNOWN, "Unknown"}
+        , {ResourceName::Ash, "Ash"}
+        , {ResourceName::Wheat, "Wheat"}
+        , {ResourceName::Rock, "Rock"}
+        , {ResourceName::Iron, "Iron"}
+        };
+
+public:
+    ResourceNameTranslator() = default;
+    ~ResourceNameTranslator() = default;
+
+    std::string translateResourceName(const ResourceName resourceName) const;
 };
 
 struct Resource
@@ -22,8 +40,8 @@ public:
     unsigned amount_ = 0;
 
     Resource() = default;
-    Resource(ResourceName nameCode, const std::string name_, unsigned value);
-    Resource(ResourceName nameCode, const std::string name_, unsigned value, unsigned amount);
+    Resource(ResourceName nameCode, unsigned value);
+    Resource(ResourceName nameCode, unsigned value, unsigned amount);
     virtual ~Resource() = default;
 
     Resource& operator +=(const unsigned amount);
