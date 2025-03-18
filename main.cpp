@@ -57,6 +57,7 @@ int main()
         }
 
         player->control();
+        player->checkCollisionWithPlatform(mapCreator.getPlatforms());
         player->controlHarvestable(harvestManager);
 
         harvestManager->organizeAll();

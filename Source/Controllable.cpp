@@ -9,16 +9,23 @@ Controllable::Controllable(sf::Vector2f position
 
 void Controllable::control()
 {
-    
+    velocity_.x = 0.f;
+    if (!isOnGround)
+        velocity_.y = 2.f;
+    else
+        velocity_.y = 0.f;
+
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-        move({speed_, 0.f});
+        velocity_.x = speed_;
 
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-        move({- speed_, 0.f});
+        velocity_.x = -speed_;
     
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-        move({0.f, - speed_});
+        velocity_.y = -speed_;
     
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-        move({0.f, speed_});
+        velocity_.y = speed_;
+
+    move(velocity_);
 }

@@ -16,6 +16,7 @@ set(SFML_LIB sfml-graphics
              sfml-system)
 
 set(SRC     Source/Sprite.cpp
+            Source/Platform.cpp
             Source/Collider.cpp
             Source/Moveable.cpp
             Source/Controllable.cpp

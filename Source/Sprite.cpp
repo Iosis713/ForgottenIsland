@@ -1,10 +1,9 @@
 #include "Headers/Sprite.hpp"
 
-Sprite::Sprite(sf::Vector2f position, sf::Vector2i size, const std::string textureFile)
+Sprite::Sprite(const sf::Vector2f position, const sf::Vector2i size, const std::string& textureFile)
     : size_(size)
-    , textureFile_(textureFile)
 {
-    texture_.loadFromFile(textureFile_);
+    texture_.loadFromFile(textureFile);
     sprite_.setTexture(texture_);
     sprite_.setPosition(position);
 }
