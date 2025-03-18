@@ -17,9 +17,6 @@ void Moveable::move(const sf::Vector2f& distance)
 void Moveable::checkCollisionWithPlatform(const Platforms& platforms)
 {
     const sf::FloatRect moveableBounds = sprite_.getGlobalBounds();
-    /*const bool isIntersecting = moveableBounds.intersects(platformBounds);
-    std::cout << "IsIntersecting = " << isIntersecting << '\n';
-*/
     const auto platformIt = std::ranges::find_if(platforms, [&](const auto& platform)
         {
             return moveableBounds.intersects(platform->getPlatform().getGlobalBounds());
@@ -36,20 +33,4 @@ void Moveable::checkCollisionWithPlatform(const Platforms& platforms)
     {
         isOnGround = false;
     }
-    /*if (isIntersecting && isOnGround)
-    {
-        setPosition({sprite_.getPosition().x, platformBounds.top - moveableBounds.height});
-
-        //was above
-        if (velocity_.y >= 0 && moveableBounds.top + moveableBounds.height <= platformBounds.top)
-        {
-            setPosition({sprite_.getPosition().x, platformBounds.top - moveableBounds.height});
-            velocity_.y = 0;
-            isOnGround = true;
-        }
-    }
-    else
-    {
-        isOnGround = false;
-    }*/
 }
