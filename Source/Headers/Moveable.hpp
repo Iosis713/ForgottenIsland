@@ -9,7 +9,6 @@
 
 using SpritePtr = std::shared_ptr<Sprite>;
 
-
 class Moveable : public Sprite
 {
 protected:
