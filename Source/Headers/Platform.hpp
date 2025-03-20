@@ -14,7 +14,6 @@ public:
     Platform() = delete;
     Platform(const sf::Vector2f position, const sf::Vector2i size, const std::string& textureFile);
     virtual ~Platform() = default;
-    void draw(sf::RenderWindow& i_window) override;
     const sf::RectangleShape& getPlatform() {return this->platform_;};
 };
 

@@ -24,7 +24,7 @@ void Controllable::control()
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         velocity_.y = -speed_;
     
-    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) and !isOnGround)
         velocity_.y = speed_;
 
     move(velocity_);

@@ -4,12 +4,12 @@
 
 #include <iostream>
 #include <memory>
-
+#include <type_traits>
 #include <SFML/Graphics.hpp>
 
 #include "Sprite.hpp"
 
-using spritePtr = std::shared_ptr<Sprite>;
+using SpritePtr = std::shared_ptr<Sprite>;
 
 struct Collider
 {
@@ -19,12 +19,26 @@ struct Collider
     template <typename Source, typename Target>
     static inline bool isColliding(const Source& source, const Target& target)
     {
-        if(source->getSprite().getGlobalBounds().intersects(target->getSprite().getGlobalBounds()))
+        sf::FloatRect targetBounds;
+        if constexpr (std::is_same_v<Target, sf::RectangleShape>)
+            targetBounds = target.getGlobalBounds();
+        else
+            targetBounds = target->getSprite().getGlobalBounds();
+
+        if(source->getSprite().getGlobalBounds().intersects(targetBounds))
             return true;
         else
             return false;
     }
-    
+
+    template <>
+    inline bool isColliding(const sf::RectangleShape& source, const sf::RectangleShape& target)
+    {
+        if(source.getGlobalBounds().intersects(target.getGlobalBounds()))
+            return true;
+        else
+            return false;
+    }
 };
 
 #endif

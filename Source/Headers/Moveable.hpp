@@ -17,6 +17,7 @@ protected:
     sf::Vector2f velocity_{0.f, 0.f};
     bool isOnGround = false;
     bool gravityOn = true;
+    sf::RectangleShape platform_{};
 
 public:
     Moveable(sf::Vector2f position
