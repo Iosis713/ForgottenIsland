@@ -123,6 +123,22 @@ TEST_F(AdventurerFixture, harvestTesting)
     player->harvest(harvestable);
 }
 
+TEST_F(AdventurerFixture, platfromStandingTest)
+{
+    //GIVEN
+    PlatformPtr platfrom = std::make_shared<Platform>(sf::Vector2f(player->getPosition().x, player->getPosition().y + player->getSize().y)
+                                                    , GreenGround.size_
+                                                    , GreenGround.filepath_);
+    
+    //WHEN
+    player->control();
+    player->checkCollisionWithPlatform({platfrom});
+    
+    //THEN
+    ASSERT_TRUE(player->IsOnGround());
+}
+
+
 int main(int argc, char** argv)
 {
     testing::InitGoogleTest(&argc, argv);

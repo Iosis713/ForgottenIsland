@@ -3,7 +3,6 @@
 #define PLATFROM
 
 #include "Sprite.hpp"
-#include "Global.hpp"
 
 class Platform : public Sprite
 {

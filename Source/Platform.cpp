@@ -6,5 +6,5 @@ Platform::Platform(const sf::Vector2f position, const sf::Vector2i size, const s
 {
     sprite_.setTextureRect(sf::IntRect(GreenGround.offset_, GreenGround.size_));
     platform_.setSize({static_cast<float>(size.x), static_cast<float>(size.y/10)});
-    platform_.setPosition(position.x, position.y + 3.f); //empty field offset
+    platform_.setPosition(position.x, position.y); //empty field offset
 }

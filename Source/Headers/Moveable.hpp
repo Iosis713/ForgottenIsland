@@ -25,6 +25,7 @@ public:
             , float speed); 
     virtual ~Moveable() = default;
 
+    bool IsOnGround() const { return this->isOnGround; };
     void move(const sf::Vector2f& distnace);
     virtual void checkCollisionWithPlatform(const Platforms& platforms);
     
