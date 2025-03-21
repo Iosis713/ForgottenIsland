@@ -44,8 +44,14 @@ int main()
                                         , sf::Vector2i {200, 250}
                                         , "../Source/Images/Tree.png");
     
+    sf::RenderTexture staticLayer;
+    staticLayer.create(SCREEN_WIDTH, SCREEN_HEIGHT);
+    staticLayer.clear();
+
     MapCreator mapCreator;
-                                 
+    mapCreator.drawMap(staticLayer);
+    staticLayer.display();         
+    const static sf::Sprite staticBackground(staticLayer.getTexture());
 
     while (window.isOpen())
     {
@@ -63,7 +69,7 @@ int main()
         harvestManager->organizeAll();
 
         window.clear();
-        mapCreator.drawMap(window);
+        window.draw(staticBackground);
         harvestManager->drawAll(window);
         player->draw(window);
         window.display();

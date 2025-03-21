@@ -22,7 +22,7 @@ private:
 public:
     MapCreator();
     ~MapCreator() = default;
-    void drawMap(sf::RenderWindow& i_window);
+    void drawMap(sf::RenderTarget& target) const;
     const Platforms& getPlatforms() {return this->platforms_;};
 };
 
