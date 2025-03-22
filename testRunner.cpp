@@ -15,6 +15,8 @@
 #include "Source/Headers/Inventory.hpp"
 #include "Source/Headers/Harvestable.hpp"
 #include "Source/Headers/HarvestableManager.hpp"
+#include "Source/Headers/Alive.hpp"
+#include "Source/Headers/Weapon.hpp"
 
 sf::RenderWindow window (sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "TEST");
 
@@ -88,7 +90,23 @@ TEST_F(InventoryFixture, InventorySortingByUnitValueTEST)
     ASSERT_EQ(inventory.getItems()[0]->value_, 10);
 }
 
-/*__________________________ADVENTURER TEST__________________________*/
+/*_____________________________WEAPONS TESTS_______________________________*/
+
+TEST(HarmByTouchTest, HarmByTouchAttackTest)
+{
+    //GIVEN
+    const int initialHP = 20;
+    std::unique_ptr<Alive> target = std::make_unique<Alive>(initialHP);
+    std::unique_ptr<HarmByTouch> weapon = std::make_unique<HarmByTouch>(5, 8);
+
+    //WHEN
+    weapon->attack(target);
+
+    //THEN
+    ASSERT_LT(target->getHP(), initialHP);
+}
+
+/*____________________________ADVENTURER TEST______________________________*/
 
 class HarvestableMock : public Harvestable
 {
@@ -137,7 +155,6 @@ TEST_F(AdventurerFixture, platfromStandingTest)
     //THEN
     ASSERT_TRUE(player->IsOnGround());
 }
-
 
 int main(int argc, char** argv)
 {

@@ -15,7 +15,8 @@ set(SFML_LIB sfml-graphics
              sfml-window
              sfml-system)
 
-set(SRC     Source/Sprite.cpp
+set(SRC     Source/Alive.cpp
+            Source/Sprite.cpp
             Source/Platform.cpp
             Source/Collider.cpp
             Source/Moveable.cpp
@@ -24,6 +25,7 @@ set(SRC     Source/Sprite.cpp
             Source/HarvestableManager.cpp
             Source/Resource.cpp
             Source/Inventory.cpp
+            Source/Weapon.cpp
             Source/Adventurer.cpp
             Source/Utils.cpp
             Source/MapCreator.cpp)
