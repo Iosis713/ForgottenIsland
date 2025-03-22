@@ -25,6 +25,7 @@ set(SRC     Source/Alive.cpp
             Source/Resource.cpp
             Source/Inventory.cpp
             Source/Weapon.cpp
+            Source/Mob.cpp
             Source/Adventurer.cpp
             Source/Utils.cpp
             Source/MapCreator.cpp)

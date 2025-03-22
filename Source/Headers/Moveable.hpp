@@ -19,10 +19,10 @@ protected:
     sf::RectangleShape platform_{};
 
 public:
-    Moveable(sf::Vector2f position
-            , sf::Vector2i size
-            , const std::string textureFile
-            , float speed); 
+    Moveable(const sf::Vector2f position
+            , const sf::Vector2i size
+            , const std::string& textureFile
+            , const float speed); 
     virtual ~Moveable() = default;
 
     virtual void control() = 0;

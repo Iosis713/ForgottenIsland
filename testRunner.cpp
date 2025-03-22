@@ -124,7 +124,8 @@ public:
     std::shared_ptr<Adventurer> player = std::make_shared<Adventurer>(sf::Vector2f{300, 300}
                                                                      , sf::Vector2i{60, 100}
                                                                      , "../Source/Images/Human.png"
-                                                                     , 8.f);
+                                                                     , 8.f
+                                                                     , 50);
 };                       
 
 TEST_F(AdventurerFixture, harvestTesting)

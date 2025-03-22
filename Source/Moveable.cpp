@@ -1,10 +1,10 @@
 #include "Headers/Moveable.hpp"
 #include "Headers/Collider.hpp"
 
-Moveable::Moveable(sf::Vector2f position
-                , sf::Vector2i size
-                , const std::string textureFile
-                , float speed)
+Moveable::Moveable(const sf::Vector2f position
+                , const sf::Vector2i size
+                , const std::string& textureFile
+                , const float speed)
     : Sprite(position, size, textureFile)
     , speed_(speed)
 {

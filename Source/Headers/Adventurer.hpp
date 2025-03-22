@@ -5,7 +5,7 @@
 #include <memory>
 
 #include "Collider.hpp"
-#include "Moveable.hpp"
+#include "Mob.hpp"
 #include "Harvestable.hpp"
 #include "HarvestableManager.hpp"
 #include "Utils.hpp"
@@ -13,7 +13,8 @@
 
 using Sprites = std::vector<std::shared_ptr<Sprite>>;
 using HarvestableManagerPtr = std::shared_ptr<HarvestableManager>;
-class Adventurer : public Moveable
+
+class Adventurer : public Mob
 {
 protected:
     Inventory inventory_;
@@ -22,8 +23,9 @@ protected:
 public:
     Adventurer(sf::Vector2f position
                 , sf::Vector2i size
-                , const std::string textureFile
-                , float speed);
+                , const std::string& textureFile
+                , const float speed
+                , const int HP);
     virtual ~Adventurer() = default;
 
     void getCollidingSprites(Sprites sprites);

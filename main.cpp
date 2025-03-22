@@ -23,7 +23,8 @@ int main()
     std::shared_ptr<Adventurer> player = std::make_shared<Adventurer>(sf::Vector2f{300, 150}
                                                                         , sf::Vector2i{60, 100}
                                                                         , "../Source/Images/Human.png"
-                                                                        , 8.f);
+                                                                        , 8.f
+                                                                        , 50);
 
     std::shared_ptr<HarvestableManager> harvestManager = std::make_shared<HarvestableManager>();
     

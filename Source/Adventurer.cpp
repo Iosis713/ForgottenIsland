@@ -2,9 +2,10 @@
 
 Adventurer::Adventurer(sf::Vector2f position
                        , sf::Vector2i size
-                       , const std::string textureFile
-                       , float speed)
-    : Moveable(position, size, textureFile, speed)
+                       , const std::string& textureFile
+                       , const float speed
+                       , const int HP)
+    : Mob(position, size, textureFile, speed, HP)
 {
     collidingSprites_.reserve(5);
 }
