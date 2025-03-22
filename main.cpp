@@ -9,7 +9,6 @@
 #include "Source/Headers/Sprite.hpp"
 #include "Source/Headers/Collider.hpp"
 #include "Source/Headers/Moveable.hpp"
-#include "Source/Headers/Controllable.hpp"
 #include "Source/Headers/Harvestable.hpp"
 #include "Source/Headers/HarvestableManager.hpp"
 #include "Source/Headers/Adventurer.hpp"

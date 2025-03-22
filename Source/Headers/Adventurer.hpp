@@ -5,14 +5,15 @@
 #include <memory>
 
 #include "Collider.hpp"
-#include "Controllable.hpp"
+#include "Moveable.hpp"
 #include "Harvestable.hpp"
 #include "HarvestableManager.hpp"
 #include "Utils.hpp"
 #include "Inventory.hpp"
+
 using Sprites = std::vector<std::shared_ptr<Sprite>>;
 using HarvestableManagerPtr = std::shared_ptr<HarvestableManager>;
-class Adventurer : public Controllable
+class Adventurer : public Moveable
 {
 protected:
     Inventory inventory_;
@@ -28,6 +29,7 @@ public:
     void getCollidingSprites(Sprites sprites);
     void harvest(std::shared_ptr<Harvestable>& harvestable);
     void controlHarvestable(HarvestableManagerPtr haverstableManager);
+    void control() override;
 
 };
 #endif

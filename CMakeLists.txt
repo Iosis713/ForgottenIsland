@@ -20,7 +20,6 @@ set(SRC     Source/Alive.cpp
             Source/Platform.cpp
             Source/Collider.cpp
             Source/Moveable.cpp
-            Source/Controllable.cpp
             Source/Harvestable.cpp
             Source/HarvestableManager.cpp
             Source/Resource.cpp
