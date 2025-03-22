@@ -13,5 +13,5 @@ HarmByTouch::HarmByTouch(const int minAttPoints, const int maxAttPoints)
 
 void HarmByTouch::attack(std::unique_ptr<Alive>& target)
 {
-    *target -= Utils().randomGenerator(minAttackPoints_, maxAttackPoints_);
+    *target -= Utils::randomGenerator(minAttackPoints_, maxAttackPoints_);
 }

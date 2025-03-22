@@ -12,23 +12,27 @@ void MapCreator::drawMap(sf::RenderTarget& target) const
         platform->drawPlatform(target);
 }
 
-void MapCreator::createMap()
+void MapCreator::createLineOfPlatforms(const sf::Vector2f& startPosition, const size_t numberOfCells)
 {
     //some platforms
-    for (size_t cell = 0; cell < 6; cell++)
-        platforms_.push_back({std::make_shared<Platform>(sf::Vector2f(500.f + cell * GreenGround.size_.x, 800.f), GreenGround.size_, GreenGround.filepath_)});
-
-    for (size_t cell = 0; cell < 4; cell++)
-        platforms_.push_back({std::make_shared<Platform>(sf::Vector2f(1200.f + cell * GreenGround.size_.x, 800.f), GreenGround.size_, GreenGround.filepath_)});
-
-    for (size_t cell = 0; cell < 8; cell++)
+    for (size_t cell = 0; cell < numberOfCells; cell++)
     {
-        platforms_.push_back({std::make_shared<Platform>(sf::Vector2f(150.f + cell * GreenGround.size_.x, 650.f), GreenGround.size_, GreenGround.filepath_)});
-        platforms_.push_back({std::make_shared<Platform>(sf::Vector2f(150.f + (10 + cell) * GreenGround.size_.x, 650.f), GreenGround.size_, GreenGround.filepath_)});
+        if (cell == 0 || cell == (numberOfCells - 1))
+            platforms_.push_back({std::make_shared<Platform>(sf::Vector2f(startPosition.x + cell * GreenGround.size_.x, startPosition.y), GreenGround.size_, GreenGround.filepath_, true)});
+        else
+            platforms_.push_back({std::make_shared<Platform>(sf::Vector2f(startPosition.x + cell * GreenGround.size_.x, startPosition.y), GreenGround.size_, GreenGround.filepath_)});
     }
+}
 
-    //bottom of the visible map
-    for (size_t cell = 0; cell < static_cast<size_t>(SCREEN_WIDTH/GreenGround.size_.x); cell++)
-        platforms_.push_back({std::make_shared<Platform>(sf::Vector2f(cell * GreenGround.size_.x, SCREEN_HEIGHT - 3 * GreenGround.size_.y), GreenGround.size_, GreenGround.filepath_)});
 
+void MapCreator::createMap()
+{
+    createLineOfPlatforms({500.f, 800.f}, 6);
+    createLineOfPlatforms({1200.f, 800.f}, 6);
+    createLineOfPlatforms({150.f, 650.f}, 8);
+    createLineOfPlatforms({1000.f, 650.f}, 7);
+    createLineOfPlatforms({700.f, 450.f}, 8);
+    createLineOfPlatforms({100.f, 300.f}, 12);
+    createLineOfPlatforms({1100.f, 150.f}, 8);
+    createLineOfPlatforms({0.f, static_cast<float>(SCREEN_HEIGHT - 3.5 * GreenGround.size_.y)}, static_cast<size_t>(SCREEN_WIDTH/GreenGround.size_.x)); //bottom of the map
 }

@@ -18,6 +18,7 @@ class MapCreator
 private:
     Platforms platforms_{};
     void createMap();
+    void createLineOfPlatforms(const sf::Vector2f& startPosition, const size_t numberOfCells);
     
 public:
     MapCreator();
