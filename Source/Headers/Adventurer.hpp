@@ -18,7 +18,6 @@ class Adventurer : public Mob
 {
 protected:
     Inventory inventory_;
-    Sprites collidingSprites_;
 
 public:
     Adventurer(sf::Vector2f position
@@ -28,10 +27,10 @@ public:
                 , const int HP);
     virtual ~Adventurer() = default;
 
-    void getCollidingSprites(Sprites sprites);
     void harvest(std::shared_ptr<Harvestable>& harvestable);
     void controlHarvestable(HarvestableManagerPtr haverstableManager);
     void control() override;
+    void draw(sf::RenderWindow& i_window) override {Moveable::draw(i_window);};
 
 };
 #endif

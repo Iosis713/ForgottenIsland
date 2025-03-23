@@ -14,7 +14,7 @@ Platform::Platform(const sf::Vector2f position, const sf::Vector2i size, const s
     : Platform(position, size, textureFile, false)
 {}
 
-void Platform::drawPlatform(sf::RenderTarget& target) const
+void Platform::drawPlatform(sf::RenderTarget& target) 
 {
     target.draw(sprite_);
 }

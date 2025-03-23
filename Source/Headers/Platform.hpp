@@ -18,7 +18,7 @@ public:
     const sf::RectangleShape& getPlatform() {return this->platform_;};
     bool IsEdgePlatform() const {return this->isEdgePlatform_;};
 
-    void drawPlatform(sf::RenderTarget& target) const;
+    void drawPlatform(sf::RenderTarget& target) ;
 };
 
 #endif

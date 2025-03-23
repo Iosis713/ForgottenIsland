@@ -43,6 +43,14 @@ int main()
     harvestManager->addNew<Harvestable>(sf::Vector2f{300, 300}
                                         , sf::Vector2i {200, 250}
                                         , "../Source/Images/Tree.png");
+
+    std::shared_ptr<Mob> snail = std::make_shared<Mob>(sf::Vector2f{600, 500}
+                                            , Snail.size_
+                                            , Snail.filepath_
+                                            , 1.f
+                                            , 10
+                                            , Snail.xFrames_
+                                            , Snail.yFrames_);
     
     sf::RenderTexture staticLayer;
     staticLayer.create(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -66,12 +74,16 @@ int main()
         player->checkCollisionWithPlatform(mapCreator.getPlatforms());
         player->controlHarvestable(harvestManager);
 
+        snail->control(mapCreator.getEdgePlatforms());
+        snail->checkCollisionWithPlatform(mapCreator.getPlatforms());
+
         harvestManager->organizeAll();
 
         window.clear();
         window.draw(staticBackground);
         harvestManager->drawAll(window);
         player->draw(window);
+        snail->draw(window);
         window.display();
 
         {
