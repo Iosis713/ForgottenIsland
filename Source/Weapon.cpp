@@ -11,7 +11,7 @@ HarmByTouch::HarmByTouch(const int minAttPoints, const int maxAttPoints)
     : Weapon(minAttPoints, maxAttPoints)
 {};
 
-void HarmByTouch::attack(std::unique_ptr<Alive>& target)
+void HarmByTouch::attack(Alive& target)
 {
-    *target -= Utils::randomGenerator(minAttackPoints_, maxAttackPoints_);
+    target -= Utils::randomGenerator(minAttackPoints_, maxAttackPoints_);
 }

@@ -14,6 +14,7 @@ public:
     void inline setHP(const int HP) { HP_ = HP;};
     Alive& operator-=(const int value);
     Alive& operator+=(const int value);
+    bool operator==(const Alive& other) const;
 };
 
 #endif

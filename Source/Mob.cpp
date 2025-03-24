@@ -9,7 +9,7 @@ Mob::Mob(const sf::Vector2f position
     , const int xFrames
     , const int yFrames)
     : Moveable(position, size, textureFile, speed)
-    , Alive(HP)
+    , creature_(HP)
     , xFrames_(xFrames)
     , yFrames_(yFrames)
 {
@@ -25,6 +25,12 @@ Mob::Mob(const sf::Vector2f position
          , const int HP)
     : Mob(position, size, textureFile, speed, HP, 0, 0)
 {};
+
+void Mob::attack(std::unique_ptr<Mob>& target)
+{
+    if (Collider::isColliding(this, target))
+        weapon->attack(target->getCreature());
+}
 
 void Mob::control(const EdgePlatforms& edgePlatforms) 
 {

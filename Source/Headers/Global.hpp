@@ -33,5 +33,5 @@ struct TextureParameters
 };
 
 const static TextureParameters GreenGround(sf::Vector2i(0, 10), sf::Vector2i(80, 70), "../Source/Images/Downloaded/Assets/Tiles.png");
-const static TextureParameters Snail(sf::Vector2i(0, 0), sf::Vector2i(48, 32), "../Source/Images/Downloaded/Mob/Snail/Snail.png", 8, 2); 
+const static TextureParameters Snail(sf::Vector2i(0, 0), sf::Vector2i(72, 48), "../Source/Images/Downloaded/Mob/Snail/Snail.png", 8, 2); 
 #endif

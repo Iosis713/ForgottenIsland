@@ -15,7 +15,7 @@ public:
     virtual ~Weapon() = default;
     Weapon() = delete;
     Weapon(const int minAttPoints, const int maxAttPoints);
-    virtual void attack(std::unique_ptr<Alive>& target) = 0;
+    virtual void attack(Alive& target) = 0;
 };
 
 class HarmByTouch : public Weapon
@@ -26,7 +26,7 @@ public:
     HarmByTouch(const int minAttPoints, const int maxAttPoints);
     virtual ~HarmByTouch() = default;
 
-    void attack(std::unique_ptr<Alive>& target) override;
+    void attack(Alive& target) override;
 };
 
 #endif

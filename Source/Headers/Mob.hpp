@@ -9,13 +9,14 @@
 #include "Weapon.hpp"
 
 class Mob : public Moveable
-          , public Alive
 {
 protected:
-    std::unique_ptr<Weapon> weapon = nullptr;
-    int currentFrame_ = 0;
+    std::shared_ptr<Weapon> weapon = std::make_shared<HarmByTouch>(2, 4);
+    Alive creature_{1};
     const int xFrames_ = 0;
     const int yFrames_ = 0;
+    int currentFrame_ = 0;
+    
 public:
     Mob() = delete;
     virtual ~Mob() = default;
@@ -24,6 +25,13 @@ public:
     void control() override {move(velocity_);};
     void control(const EdgePlatforms& edgePlatforms);
     void draw(sf::RenderWindow& i_window) override;
+    void attack(std::unique_ptr<Mob>& target);
+
+    Alive& getCreature() {return this->creature_;};
+    std::shared_ptr<Weapon>& getWeapon() {return this->weapon;};
+    int getHP() const {return this->creature_.getHP();};
+    void setWeapon(std::shared_ptr<Weapon> newWeapon) {weapon = newWeapon;};
+
 };
 
 enum class Direction : int

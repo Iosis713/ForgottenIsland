@@ -14,6 +14,7 @@
 #include "Source/Headers/Resource.hpp"
 #include "Source/Headers/Inventory.hpp"
 #include "Source/Headers/Harvestable.hpp"
+#include "Source/Headers/Mob.hpp"
 #include "Source/Headers/HarvestableManager.hpp"
 #include "Source/Headers/Alive.hpp"
 #include "Source/Headers/Weapon.hpp"
@@ -96,15 +97,21 @@ TEST(HarmByTouchTest, HarmByTouchAttackTest)
 {
     //GIVEN
     const int initialHP = 20;
-    std::unique_ptr<Alive> target = std::make_unique<Alive>(initialHP);
+    Alive target(initialHP);
     std::unique_ptr<HarmByTouch> weapon = std::make_unique<HarmByTouch>(5, 8);
 
     //WHEN
     weapon->attack(target);
 
     //THEN
-    ASSERT_LT(target->getHP(), initialHP);
+    ASSERT_LT(target.getHP(), initialHP);
 }
+
+class WeaponMock : public Weapon
+{
+public:
+    MOCK_METHOD(void, attack, (Alive& target), (override));
+};
 
 /*____________________________ADVENTURER TEST______________________________*/
 
@@ -127,6 +134,26 @@ public:
                                                                      , 8.f
                                                                      , 50);
 };                       
+
+TEST_F(AdventurerFixture, attackTest)
+{
+    //GIVEN
+    const int initalSnailHP = 10;
+    std::unique_ptr<Mob> snail = std::make_unique<Mob>(sf::Vector2f{350, 320}
+                                                    , Snail.size_
+                                                    , Snail.filepath_
+                                                    , 1.f
+                                                    , initalSnailHP
+                                                    , Snail.xFrames_
+                                                    , Snail.yFrames_);
+    player->setWeapon(std::make_shared<HarmByTouch>(5, 9));
+
+    //WHEN
+    player->attack(snail);
+
+    //THEN
+    ASSERT_LT(snail->getHP(), initalSnailHP);
+};
 
 TEST_F(AdventurerFixture, harvestTesting)
 {
