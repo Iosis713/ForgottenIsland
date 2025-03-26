@@ -22,11 +22,12 @@ public:
     virtual ~Mob() = default;
     Mob(const sf::Vector2f position, const sf::Vector2i size, const std::string& textureFile, const float speed, const int HP, const int xFrames, const int yFrames);
     Mob(const sf::Vector2f position, const sf::Vector2i size, const std::string& textureFile, const float speed, const int HP);
+    
+    void attack(std::unique_ptr<Mob>& target);
     void control() override {move(velocity_);};
     void control(const EdgePlatforms& edgePlatforms);
     void draw(sf::RenderWindow& i_window) override;
-    void attack(std::unique_ptr<Mob>& target);
-
+    
     Alive& getCreature() {return this->creature_;};
     std::shared_ptr<Weapon>& getWeapon() {return this->weapon;};
     int getHP() const {return this->creature_.getHP();};

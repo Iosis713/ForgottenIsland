@@ -25,10 +25,11 @@ public:
             , const float speed); 
     virtual ~Moveable() = default;
 
+    virtual void checkCollisionWithPlatform(const Platforms& platforms);
     virtual void control() = 0;
     bool IsOnGround() const { return this->isOnGround; };
+    virtual void jump();
     void move(const sf::Vector2f& distnace);
-    virtual void checkCollisionWithPlatform(const Platforms& platforms);
     
 };
 

@@ -34,11 +34,6 @@ void Mob::attack(std::unique_ptr<Mob>& target)
 
 void Mob::control(const EdgePlatforms& edgePlatforms) 
 {
-    if (!isOnGround)
-        velocity_.y = 1.f;
-    else
-        velocity_.y = 0.f;
-
     for(const auto& edgePlatform : edgePlatforms)
     if (Collider::isColliding(this->platform_, edgePlatform))
     {

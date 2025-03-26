@@ -12,12 +12,6 @@ Moveable::Moveable(const sf::Vector2f position
     platform_.setPosition(position.x, position.y + sprite_.getGlobalBounds().height - platform_.getSize().y); //empty field offset
 }
 
-void Moveable::move(const sf::Vector2f& distance)
-{
-    sprite_.move(distance);
-    platform_.move(distance);
-}
-
 void Moveable::checkCollisionWithPlatform(const Platforms& platforms)
 {
     const sf::FloatRect moveableBounds = sprite_.getGlobalBounds();
@@ -33,11 +27,28 @@ void Moveable::checkCollisionWithPlatform(const Platforms& platforms)
         platform_.setPosition({sprite_.getPosition().x, sprite_.getPosition().y
                                                         + size_.y 
                                                         - platform_.getSize().y});
-        velocity_.y = 0.f;
         isOnGround = true;
     }
     else
     {
         isOnGround = false;
     }
+}
+
+void Moveable::jump()
+{
+    if(isOnGround)
+    {
+        velocity_.y = -5.f;
+        isOnGround = false;
+    }
+}
+
+void Moveable::move(const sf::Vector2f& distance)
+{
+    if (!isOnGround)
+        velocity_.y += 0.05f;
+
+    sprite_.move(distance);
+    platform_.move(distance);
 }

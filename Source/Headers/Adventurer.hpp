@@ -18,6 +18,7 @@ class Adventurer : public Mob
 {
 protected:
     Inventory inventory_;
+    bool isJumping = false;
 
 public:
     Adventurer(sf::Vector2f position
