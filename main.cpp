@@ -14,16 +14,29 @@
 #include "Source/Headers/Adventurer.hpp"
 #include "Source/Headers/MapCreator.hpp"
 
+
+void fpsDisplay(int& fps, sf::Clock& clock, sf::Text& fpsText, sf::RenderWindow& window);
+
 using spritePtr = std::shared_ptr<Sprite>;
 
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "ForgottenIsland");
     
+    sf::Clock clock;
+    int fps = 0;
+    sf::Font font;
+    font.loadFromFile("../Source/Arial.ttf");
+    sf::Text fpsText;
+    fpsText.setFont(font);
+    fpsText.setCharacterSize(24);
+    fpsText.setFillColor(sf::Color::Yellow);
+    fpsText.setPosition({SCREEN_WIDTH - 200, 10});
+
     std::shared_ptr<Adventurer> player = std::make_shared<Adventurer>(sf::Vector2f{300, 150}
                                                                         , sf::Vector2i{60, 100}
                                                                         , "../Source/Images/Human.png"
-                                                                        , 8.f
+                                                                        , 0.5f
                                                                         , 50);
 
     std::shared_ptr<HarvestableManager> harvestManager = std::make_shared<HarvestableManager>();
@@ -47,7 +60,7 @@ int main()
     std::shared_ptr<Mob> snail = std::make_shared<Mob>(sf::Vector2f{600, 500}
                                             , Snail.size_
                                             , Snail.filepath_
-                                            , 1.f
+                                            , 0.1f
                                             , 10
                                             , Snail.xFrames_
                                             , Snail.yFrames_);
@@ -81,17 +94,23 @@ int main()
 
         window.clear();
         window.draw(staticBackground);
+        fpsDisplay(fps, clock, fpsText, window);
         harvestManager->drawAll(window);
         player->draw(window);
         snail->draw(window);
         window.display();
-
-        {
-            using namespace std::chrono_literals;
-            std::this_thread::sleep_for(20ms);
-        }
     }
-
     return 0;
 }
 
+void fpsDisplay(int& fps, sf::Clock& clock, sf::Text& fpsText, sf::RenderWindow& window)
+{
+    fps++;
+        if (clock.getElapsedTime().asSeconds() >= 1.0f)
+        {
+            fpsText.setString(std::format("FPS: {}", fps));
+            fps = 0;
+            clock.restart();
+        }
+    window.draw(fpsText);
+};

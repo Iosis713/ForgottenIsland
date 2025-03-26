@@ -35,7 +35,7 @@ void Mob::attack(std::unique_ptr<Mob>& target)
 void Mob::control(const EdgePlatforms& edgePlatforms) 
 {
     if (!isOnGround)
-        velocity_.y = 2.f;
+        velocity_.y = 1.f;
     else
         velocity_.y = 0.f;
 
@@ -54,10 +54,10 @@ void Mob::draw(sf::RenderWindow& i_window)
 {
     using enum Direction;
     const int direction = velocity_.x < 0 ? static_cast<int>(LEFT) : static_cast<int>(RIGHT);
-    sprite_.setTextureRect(sf::IntRect(size_.x * (currentFrame_ / 6), direction * size_.y, size_.x, size_.y));
+    sprite_.setTextureRect(sf::IntRect(size_.x * (currentFrame_ / 32), direction * size_.y, size_.x, size_.y));
     i_window.draw(sprite_);
 
-    if (currentFrame_ <  6 * xFrames_ - 1)
+    if (currentFrame_ <  32 * xFrames_ - 1)
         currentFrame_++;
     else
         currentFrame_ = 0;
