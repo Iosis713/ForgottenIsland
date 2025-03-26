@@ -16,13 +16,9 @@ void Adventurer::control()
         velocity_.x = speed_;
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         velocity_.x = -speed_;    
-    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) and !isOnGround)
-        velocity_.y = speed_;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::LAlt))
         jump();
-
-    move(velocity_);
 }
 
 void Adventurer::controlHarvestable(HarvestableManagerPtr harvestableManager)

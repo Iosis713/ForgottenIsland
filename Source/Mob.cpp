@@ -35,25 +35,35 @@ void Mob::attack(std::unique_ptr<Mob>& target)
 void Mob::control(const EdgePlatforms& edgePlatforms) 
 {
     for(const auto& edgePlatform : edgePlatforms)
-    if (Collider::isColliding(this->platform_, edgePlatform))
     {
-        if (velocity_.x < 0) //Going left
-            velocity_.x = this->speed_;
-        else
-            velocity_.x = -this->speed_;
-    }
-    control();
+        if (Collider::isColliding(this->platform_, edgePlatform))
+        {
+            if (velocity_.x < 0) //Going left
+                velocity_.x = this->speed_;
+            else
+                velocity_.x = -this->speed_;
+        }
+    }   
 }
 
 void Mob::draw(sf::RenderWindow& i_window)
 {
     using enum Direction;
-    const int direction = velocity_.x < 0 ? static_cast<int>(LEFT) : static_cast<int>(RIGHT);
-    sprite_.setTextureRect(sf::IntRect(size_.x * (currentFrame_ / 32), direction * size_.y, size_.x, size_.y));
+    const int direction = static_cast<int>(velocity_.x < 0.f ? LEFT : RIGHT);
+    sprite_.setTextureRect(sf::IntRect(size_.x * (currentFrame_ / 48), direction * size_.y, size_.x, size_.y));
     i_window.draw(sprite_);
 
-    if (currentFrame_ <  32 * xFrames_ - 1)
+    if (currentFrame_ <  48 * xFrames_ - 1)
         currentFrame_++;
     else
         currentFrame_ = 0;
+}
+
+void Mob::jump()
+{
+    if(isOnGround)
+    {
+        velocity_.y = -3.f;
+        isOnGround = false;
+    }
 }

@@ -17,6 +17,7 @@ protected:
     bool isOnGround = false;
     bool gravityOn = true;
     sf::RectangleShape platform_{};
+    virtual void checkCollisionWithPlatform(const Platforms& platforms);
 
 public:
     Moveable(const sf::Vector2f position
@@ -25,12 +26,9 @@ public:
             , const float speed); 
     virtual ~Moveable() = default;
 
-    virtual void checkCollisionWithPlatform(const Platforms& platforms);
-    virtual void control() = 0;
     bool IsOnGround() const { return this->isOnGround; };
-    virtual void jump();
-    void move(const sf::Vector2f& distnace);
-    
+    virtual void jump() = 0;
+    void updatePosition(const Platforms& platforms);
 };
 
 #endif

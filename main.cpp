@@ -84,11 +84,11 @@ int main()
         }
 
         player->control();
-        player->checkCollisionWithPlatform(mapCreator.getPlatforms());
+        player->updatePosition(mapCreator.getPlatforms());
         player->controlHarvestable(harvestManager);
 
         snail->control(mapCreator.getEdgePlatforms());
-        snail->checkCollisionWithPlatform(mapCreator.getPlatforms());
+        snail->updatePosition(mapCreator.getPlatforms());
 
         harvestManager->organizeAll();
 

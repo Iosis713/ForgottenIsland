@@ -35,20 +35,12 @@ void Moveable::checkCollisionWithPlatform(const Platforms& platforms)
     }
 }
 
-void Moveable::jump()
-{
-    if(isOnGround)
-    {
-        velocity_.y = -5.f;
-        isOnGround = false;
-    }
-}
-
-void Moveable::move(const sf::Vector2f& distance)
+void Moveable::updatePosition(const Platforms& platforms)
 {
     if (!isOnGround)
-        velocity_.y += 0.05f;
-
-    sprite_.move(distance);
-    platform_.move(distance);
+        velocity_.y += 0.02f;
+        
+    sprite_.move(velocity_);
+    platform_.move(velocity_);
+    checkCollisionWithPlatform(platforms);
 }

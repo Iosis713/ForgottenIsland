@@ -177,8 +177,8 @@ TEST_F(AdventurerFixture, platfromStandingTest)
                                                     , GreenGround.filepath_);
     
     //WHEN
-    player->control();
-    player->checkCollisionWithPlatform({platfrom});
+    //player->control();
+    player->updatePosition({platfrom});
     
     //THEN
     ASSERT_TRUE(player->IsOnGround());
