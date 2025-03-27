@@ -30,7 +30,4 @@ public:
     const EdgePlatforms& getEdgePlatforms() const {return this->edgePlatforms_;};
 };
 
-
-
-
 #endif

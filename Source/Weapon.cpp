@@ -29,8 +29,6 @@ HarmByTouch::HarmByTouch(const int minAttPoints, const int maxAttPoints)
 Sword::Sword(const int minAttPoints, const int maxAttPoints)
     :Weapon(minAttPoints, maxAttPoints)
 {
-    range_.setSize({250.f, 100.f});
-    range_.setOutlineThickness(3.f);
-    range_.setOutlineColor(sf::Color::White);
+    range_.setSize({200.f, 100.f});
 };
 

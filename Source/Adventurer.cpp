@@ -34,7 +34,6 @@ void Adventurer::controlHarvestable(HarvestableManagerPtr harvestableManager)
 
 void Adventurer::draw(sf::RenderWindow& i_window) 
 {
-    i_window.draw(weapon->getRange());
     Moveable::draw(i_window);
 };
 
