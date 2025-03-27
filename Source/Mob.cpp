@@ -27,8 +27,9 @@ Mob::Mob(const sf::Vector2f position
 {};
 
 void Mob::attack(std::unique_ptr<Mob>& target)
-{
-    if (Collider::isColliding(this, target))
+{   
+    updateWeaponPosition();
+    if (Collider::isColliding(weapon->getRange(), target))
         weapon->attack(target->getCreature());
 }
 
@@ -48,9 +49,7 @@ void Mob::control(const EdgePlatforms& edgePlatforms)
 
 void Mob::draw(sf::RenderWindow& i_window)
 {
-    using enum Direction;
-    const int direction = static_cast<int>(velocity_.x < 0.f ? LEFT : RIGHT);
-    sprite_.setTextureRect(sf::IntRect(size_.x * (currentFrame_ / 48), direction * size_.y, size_.x, size_.y));
+    sprite_.setTextureRect(sf::IntRect(size_.x * (currentFrame_ / 48), static_cast<int>(aimDirection) * size_.y, size_.x, size_.y));
     i_window.draw(sprite_);
 
     if (currentFrame_ <  48 * xFrames_ - 1)
@@ -66,4 +65,20 @@ void Mob::jump()
         velocity_.y = -3.f;
         isOnGround = false;
     }
+}
+
+void Mob::updatePosition(const Platforms& platforms)
+{
+    creature_.update();
+    Moveable::updatePosition(platforms);
+    updateWeaponPosition();
+}
+
+void Mob::updateWeaponPosition()
+{
+    if (aimDirection == Direction::LEFT)
+        weapon->updatePosition(this->getPosition()
+                               - sf::Vector2f{weapon->getRange().getSize().x - this->getSize().x, 0.f});
+    else
+        weapon->updatePosition(this->getPosition());
 }

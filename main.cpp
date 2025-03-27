@@ -33,6 +33,12 @@ int main()
     fpsText.setFillColor(sf::Color::Yellow);
     fpsText.setPosition({SCREEN_WIDTH - 200, 10});
 
+    sf::Text snailHP;
+    snailHP.setFont(font);
+    snailHP.setCharacterSize(24);
+    snailHP.setFillColor(sf::Color::Red);
+    snailHP.setPosition({SCREEN_WIDTH - 300, 50});
+
     std::shared_ptr<Adventurer> player = std::make_shared<Adventurer>(sf::Vector2f{300, 150}
                                                                         , sf::Vector2i{60, 100}
                                                                         , "../Source/Images/Human.png"
@@ -57,11 +63,11 @@ int main()
                                         , sf::Vector2i {200, 250}
                                         , "../Source/Images/Tree.png");
 
-    std::shared_ptr<Mob> snail = std::make_shared<Mob>(sf::Vector2f{600, 500}
+    std::unique_ptr<Mob> snail = std::make_unique<Mob>(sf::Vector2f{600, 500}
                                             , Snail.size_
                                             , Snail.filepath_
                                             , 0.1f
-                                            , 10
+                                            , 1000000
                                             , Snail.xFrames_
                                             , Snail.yFrames_);
     
@@ -83,7 +89,11 @@ int main()
                 window.close();
         }
 
+        snailHP.setString(std::format("SnailHP: {}", snail->getHP()));
+
         player->control();
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl))
+            player->attack(snail);
         player->updatePosition(mapCreator.getPlatforms());
         player->controlHarvestable(harvestManager);
 
@@ -95,6 +105,7 @@ int main()
         window.clear();
         window.draw(staticBackground);
         fpsDisplay(fps, clock, fpsText, window);
+        window.draw(snailHP);
         harvestManager->drawAll(window);
         player->draw(window);
         snail->draw(window);

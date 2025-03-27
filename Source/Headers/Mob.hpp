@@ -16,7 +16,7 @@ protected:
     const int xFrames_ = 0;
     const int yFrames_ = 0;
     int currentFrame_ = 0;
-    
+
 public:
     Mob() = delete;
     virtual ~Mob() = default;
@@ -31,14 +31,11 @@ public:
     Alive& getCreature() {return this->creature_;};
     std::shared_ptr<Weapon>& getWeapon() {return this->weapon;};
     int getHP() const {return this->creature_.getHP();};
+
     void setWeapon(std::shared_ptr<Weapon> newWeapon) {weapon = newWeapon;};
 
-};
-
-enum class Direction : int
-{
-    LEFT = 0,
-    RIGHT = 1
+    void updateWeaponPosition();
+    void updatePosition(const Platforms& platforms) override;
 };
 
 #endif

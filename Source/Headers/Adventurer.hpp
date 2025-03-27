@@ -31,7 +31,7 @@ public:
     void harvest(std::shared_ptr<Harvestable>& harvestable);
     void controlHarvestable(HarvestableManagerPtr haverstableManager);
     void control();
-    void draw(sf::RenderWindow& i_window) override {Moveable::draw(i_window);};
+    void draw(sf::RenderWindow& i_window) override;
 
 };
 #endif

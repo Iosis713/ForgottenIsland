@@ -113,6 +113,16 @@ public:
     MOCK_METHOD(void, attack, (Alive& target), (override));
 };
 
+class AliveMock : public Alive
+{
+public:
+    AliveMock(const int HP) : Alive(HP) {};
+    MOCK_METHOD(bool, isVulnerable, (), (const, override));
+    MOCK_METHOD(void, makeInvulnerable, (), (override));
+    MOCK_METHOD(void, hitNow, (), (override));
+};
+
+
 /*____________________________ADVENTURER TEST______________________________*/
 
 class HarvestableMock : public Harvestable
@@ -135,7 +145,26 @@ public:
                                                                      , 50);
 };                       
 
-TEST_F(AdventurerFixture, attackTest)
+TEST(WeaponAttack, weaponAttack)
+{
+    //GIVEN
+    AliveMock aliveMock(20);
+    Weapon weapon(1, 2);
+
+    EXPECT_CALL(aliveMock, isVulnerable())
+        .Times(2)
+        .WillOnce(testing::Return(true))
+        .WillOnce(testing::Return(false));
+    EXPECT_CALL(aliveMock, makeInvulnerable()).Times(1);
+    EXPECT_CALL(aliveMock, hitNow()).Times(1);
+
+    //WHEN
+    weapon.attack(aliveMock);
+    weapon.attack(aliveMock);
+}
+
+
+TEST_F(AdventurerFixture, attackSnailTest)
 {
     //GIVEN
     const int initalSnailHP = 10;
@@ -177,7 +206,6 @@ TEST_F(AdventurerFixture, platfromStandingTest)
                                                     , GreenGround.filepath_);
     
     //WHEN
-    //player->control();
     player->updatePosition({platfrom});
     
     //THEN

@@ -37,6 +37,12 @@ void Moveable::checkCollisionWithPlatform(const Platforms& platforms)
 
 void Moveable::updatePosition(const Platforms& platforms)
 {
+    using enum Direction;
+    if (velocity_.x < 0.f)
+        aimDirection = LEFT;
+    else if (velocity_.x > 0.f)
+        aimDirection = RIGHT;
+
     if (!isOnGround)
         velocity_.y += 0.02f;
         

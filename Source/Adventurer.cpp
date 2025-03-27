@@ -6,7 +6,9 @@ Adventurer::Adventurer(sf::Vector2f position
                        , const float speed
                        , const int HP)
     : Mob(position, size, textureFile, speed, HP)
-{}
+{
+    setWeapon(std::make_shared<Sword>(4, 7));
+}
 
 void Adventurer::control()
 {
@@ -29,6 +31,12 @@ void Adventurer::controlHarvestable(HarvestableManagerPtr harvestableManager)
                 harvest(harvestable);
         }
 }
+
+void Adventurer::draw(sf::RenderWindow& i_window) 
+{
+    i_window.draw(weapon->getRange());
+    Moveable::draw(i_window);
+};
 
 void Adventurer::harvest(std::shared_ptr<Harvestable>& harvestable)
 {

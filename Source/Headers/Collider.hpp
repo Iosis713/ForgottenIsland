@@ -25,7 +25,13 @@ struct Collider
         else
             targetBounds = target->getSprite().getGlobalBounds();
 
-        if(source->getSprite().getGlobalBounds().intersects(targetBounds))
+        sf::FloatRect sourceBounds;
+        if constexpr (std::is_same_v<Source, sf::RectangleShape>)
+            sourceBounds = source.getGlobalBounds();
+        else
+            sourceBounds = source->getSprite().getGlobalBounds();
+
+        if(sourceBounds.intersects(targetBounds))
             return true;
         else
             return false;

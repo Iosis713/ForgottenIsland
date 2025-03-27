@@ -9,6 +9,12 @@
 
 using SpritePtr = std::shared_ptr<Sprite>;
 
+enum class Direction : int
+{
+    LEFT = 0,
+    RIGHT = 1
+};
+
 class Moveable : public Sprite
 {
 protected:
@@ -18,6 +24,7 @@ protected:
     bool gravityOn = true;
     sf::RectangleShape platform_{};
     virtual void checkCollisionWithPlatform(const Platforms& platforms);
+    Direction aimDirection = Direction::LEFT;
 
 public:
     Moveable(const sf::Vector2f position
@@ -28,7 +35,7 @@ public:
 
     bool IsOnGround() const { return this->isOnGround; };
     virtual void jump() = 0;
-    void updatePosition(const Platforms& platforms);
+    virtual void updatePosition(const Platforms& platforms);
 };
 
 #endif
